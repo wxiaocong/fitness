@@ -1,0 +1,88 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 资金记录</h3>
+					<div class="box-tool">
+                    	<a id="download" href="javascript:;"  class="btn btn-info">导出</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                	<form name="form" id="pform" method="post" action="<!--{base_url()}-->order/paylog/index/" >
+                		<span>时间</span>
+                		<input type="text" name="date" id="date" style="width:90px;" class="Wdate search_time" 
+                		value="<!--{isset($date) ? $date : date('Y-m')}-->" onClick="WdatePicker({readOnly:true,maxDate:'<!--{date('Y-m')}-->',dateFmt:'yyyy-MM'})" />
+                		<span>订单号：</span>
+						<input type="text" name="order_sn" value="<!--{$order_sn}-->"  style="width:120px;" />
+						<span>用户：</span>
+						<input type="text" name="nickname" value="<!--{$nickname}-->"  style="width:120px;" />
+						<span>类型：</span>
+						<select name="ptype">
+							<option></option>
+							<!--{foreach $pay_type as $k=>$v}-->
+							<option value="<!--{$k}-->"<!--{if $ptype == $k}--> selected<!--{/if}-->><!--{$v}--></option>
+							<!--{/foreach}-->
+						</select>
+                        &nbsp;&nbsp;<input type="submit" class="btn btn-info" id="button" value="搜索" >
+	                </form> 
+                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                        	<th>订单号</th>
+                            <th>用户</th>                            
+                            <th>收入</th>
+                            <th>支出</th>
+                            <th>余额</th>
+                            <th>类型</th>
+                            <th>备注</th>
+                            <th>操作时间</th>
+                            <th>操作人</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as  $value}-->
+                        <tr>
+                        	<td><a href="<!--{base_url()}-->order/order/detail/<!--{$value['order_id']}-->"><!--{$value['order_sn']}--></a></td>
+                            <td><!--{$value['nickname']}--></td>
+                            <td><!--{$value['gain']}--></td>
+                            <td><!--{$value['expense']}--></td>
+                            <td><!--{$value['balance']}--></td>
+                            <td><!--{isset($pay_type[$value['pay_type']])?$pay_type[$value['pay_type']]:'未知类型'}--></td>
+                            <td><!--{$value['remark']}--></td>
+                            <td><!--{$value['dateline']}--></td>
+                            <td><!--{$value['uname']}--></td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->
+<script type="text/javascript">
+$('#download').click(function(){
+    var url = $('#host').val() + "order/paylog/export?" +  $('#pform').serialize();
+	window.open(url);
+});
+</script>

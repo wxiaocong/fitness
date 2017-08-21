@@ -1,0 +1,56 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" id="container">
+	<div>
+		<div class="order_rq numimg">
+    		<div>
+    			<div class="rq_num" style="width:28%;">
+    				<div class="rq_cnt"><!--{$train_cnt}--></div>
+    				<div class="rq-text">累计训练 / 次</div>
+    			</div>
+    			<div class="rq_num" style="width:40%;">
+    				<div class="rq_cnt"><!--{$train_minute}--></div>
+    				<div class="rq-text">累计时长 / 分</div>
+    			</div>
+    			<div class="rq_num" style="width:28%;">
+    				<div><!--{$train_day}--></div>
+    				<div class="rq-text">累计天数 / 分</div>
+    			</div>
+    		</div>
+		</div>
+		<!--{if empty($order)}-->
+		<div class="weui-btn_yuyue">
+			<a href="<!--{base_url()}-->course">预约课程</a>
+		</div>
+		<!--{else}-->
+			<div class="loadmore">
+			<!--{foreach $order as $val}-->
+			<div class="ycard" data="<!--{$val['order_id']}-->">
+				<div>
+					<img src="<!--{$val['pic_persion']}-->" />
+				</div>
+				<div class="order-info <!--{$val['status']=='2'?'no_img':'yes_img'}-->">
+					<div style="line-height: 6vw;padding-top: 1vw;"><!--{$val['store_name']}--></div>
+					<div style="line-height: 6vw;">
+						<!--{$val['time']}-->:00-<!--{intval($val['time'])+1}-->:00
+						<!--{date('m月d日',strtotime($val['date']))}--> 
+						| <!--{$val['num']}-->人
+					</div>
+					<div  style="line-height: 6vw;padding-bottom: 1vw;"><!--{$val['course_name']}-->(<!--{$val['coach_name']}-->)</div>
+					<div>
+						<!--{if $val['can_sign']}-->
+						<a class="cc" href="<!--{base_url()}-->tasks/confirm_class/<!--{$val['order_id']}-->">签到</a>
+						<!--{else if $val['status'] == '1' && $val['is_confirm'] == '1'}-->
+						<a class="cc" href="javascript:void(0);">已签到</a>
+						<!--{else}-->
+						<a class="cc" href="javascript:void(0);"><!--{$status_arr[$val['status']]}--></a>
+						<!--{/if}-->
+					</div>
+				</div>
+			</div>	
+			<!--{/foreach}-->
+			</div>
+		<!--{/if}-->
+	</div>
+</div>
+<!--{include file='inc/tabbar.html'}-->
+<!--{include file='inc/footer.html'}-->

@@ -1,0 +1,48 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 申请退款</h3>
+
+                </div>
+                <div class="box-content">
+                	<form name="form" id="pform" method="post" action="<!--{base_url()}-->order/refund/save/" >
+                		<input type="hidden" name="order_id" value="<!--{$order_id}-->" />
+                		<div>微信订单号：<!--{$transaction_id}--></div><br />
+                		<div>商户订单号：<!--{$order_sn}--></div><br />
+                		<div>订单总金额(元)：<!--{$total}--></div><br />
+                		<div>支付金额(元)：<!--{$payment}--></div><br />
+                		<div>人数：<!--{$num}--></div><br />
+                		<!--{if in_array($pay_type,array('1','2','4','5'))}-->
+	                	<div>退款金额(元)：
+							<input type="text" id="refund_money" class="form-control" name="refund_money"  />
+	                	</div>
+	                	<!--{/if}-->
+	                	<br />
+						<p>
+							<input type="submit" style="width:120px; height:30px; border-radius: 5px;background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" id="button" value="申请退款" />
+						</p>
+                	<div style="color: #da3720;margin-top: 30px;">
+				        <p>注：</p>
+				        <p>1、退款后订单将会取消</p>
+				        <p>2、总退款金额不能超过用户实际支付金额</p>
+				        <p>3、课程开始前<!--{$cannot_cancel_order_time}-->小时内,不能取消课程;<!--{$cannot_cancel_order_time}-->小时外每月可取消两次,超出扣费0.5次(私教)课程</p>
+				   		<p>4、私教课程3小时外取消超过两次将扣除一半套餐次数</p>
+				    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

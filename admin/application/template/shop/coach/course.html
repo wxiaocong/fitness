@@ -1,0 +1,41 @@
+<!--{include file='inc/header.html'}-->
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-comment"></i> 教授课程</h3>
+
+                    <div class="box-tool">
+                    	<a href="<!--{base_url()}-->shop/coach" class="btn btn-info">返回上一级</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form name="addForm" id="addForm" method="post" action="<!--{base_url()}-->shop/coach/save_course/<!--{$id}-->">
+                        <div>
+                        	<!--{foreach $course as $key=>$val}-->
+							<label class="checkbox-inline">
+								<input name="course[]" type="checkbox" <!--{if in_array($key,$choosed_course)}-->checked<!--{/if}-->  value="<!--{$key}-->"> <!--{$val}-->
+							</label>
+							<!--{/foreach}-->
+						</div>
+						<div style="margin-top:8px;text-align:center;">
+							<input type="submit" class="btn btn-primary" id="button" value="保存">
+						</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+
+<!--{include file='inc/footer.html'}-->

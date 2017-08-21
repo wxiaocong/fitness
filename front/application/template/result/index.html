@@ -1,0 +1,19 @@
+<!--{include file='inc/header.html'}-->
+<div class="weui-msg">
+	<div class="weui-msg__icon-area">
+		<i class="weui-icon-warn <!--{if $status}-->weui-icon-success<!--{else}-->weui-icon_msg<!--{/if}-->"></i>
+	</div>
+	<div class="weui-msg__text-area">
+		<h2 class="weui-msg__title"><!--{$msg}--></h2>
+		<p class="weui-msg__desc">
+			
+		</p>
+	</div>
+	<div class="weui-msg__opr-area">
+		<p class="weui-btn-area">
+			<a href="javascript:history.back();"
+				class="weui-btn weui-btn_primary">返回</a> <a
+				href="<!--{base_url()}-->" class="weui-btn weui-btn_default">返回首页</a>
+		</p>
+	</div>
+</div>

@@ -1,0 +1,98 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 微信对账单
+                    <span style="font-size:13px;">(可以通过该接口下载历史交易清单。比如掉单、系统错误等导致系统和微信数据不一致，通过对账单核对后可校正支付状态。)</span>
+                    </h3>
+
+                </div>
+                <div class="box-content">
+                	<form name="form" id="pform" method="post" action="<!--{base_url()}-->order/check/index" >
+                		<div>对账日期：
+						<input type="text" id="check_date" class="form-control" name="check_date"  value="<!--{$check_date}-->" 
+	                					onfocus="WdatePicker({readOnly:true,dateFmt:'yyyyMMdd',minDate:'<!--{date('Y-m-d',strtotime('-3 month'))}-->',maxDate:'<!--{date('Y-m-d',strtotime('-1 day'))}-->'})" 
+	                					style="width:172px;" />
+	                	</div><br />
+	                	<div>订单类型：
+		                	<select name="bill_type" style="width: 186px;">
+							  <option value ="ALL"<!--{if $bill_type == 'ALL'}--> selected<!--{/if}-->>所有订单信息</option>
+							  <option value ="SUCCESS"<!--{if $bill_type == 'SUCCESS'}--> selected<!--{/if}-->>成功支付的订单</option>
+							  <option value="REFUND"<!--{if $bill_type == 'REFUND'}--> selected<!--{/if}-->>退款订单</option>
+							  <option value="REVOKED"<!--{if $bill_type == 'REVOKED'}--> selected<!--{/if}-->>撤销的订单</option>
+							</select>				
+						</div><br />
+                        <input type="submit" style="width:120px; height:30px; border-radius: 5px;background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" id="download" value="查看对账单" >
+	                </form> 
+                	<div style="color: #da3720;margin-top: 30px;">
+				        <p>注：</p>
+				        <p>1、微信侧未成功下单的交易不会出现在对账单中。支付成功后撤销的交易会出现在对账单中，跟原支付单订单号一致； </p>
+				        <p>2、微信在次日9点启动生成前一天的对账单，建议10点后再获取； </p>
+				        <p>3、对账单中涉及金额的字段单位为“元”。 </p>
+						<p>4、对账单接口只能查看三个月以内的账单。</p>
+				    </div>
+				    
+				    <div class="clearfix"></div>
+                    <!--{if ! empty($table_title)}-->
+                    <div style="width:100%;overflow:scroll;">
+                    <table class="table table-advance" style="word-break:keep-all;white-space:nowrap;">
+                        <thead>
+                        <tr>
+                            <!--{foreach $table_title as $val}-->
+                            <th><!--{$val}--></th>
+                            <!--{/foreach}-->
+                        </tr>
+                        </thead>
+                        <tbody>
+	                        <!--{if !empty($list)}-->
+	                        <!--{foreach $list as $value}-->
+	                        <tr>
+	                        	<!--{foreach $value as $k=>$v}-->
+	                        	<!--{if $k > 0}-->
+	                        	<td><!--{str_replace(',','',$v)}--></td>
+	                        	<!--{/if}-->
+	                        	<!--{/foreach}-->
+	                        </tr>
+	                        <!--{/foreach}-->
+	                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    </div>
+                   <table class="table table-advance" style="margin-top:10px;">
+                    	<thead>
+                        <tr>
+                            <!--{foreach $count_title as $m}-->
+                            <th><!--{$m}--></th>
+                            <!--{/foreach}-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        	<tr>
+                        		<!--{foreach $count_data as $l=>$n}-->
+                        		<!--{if $l > 0}-->
+	                        	<td><!--{str_replace(',','',$n)}--></td>
+	                        	<!--{/if}-->
+	                        	<!--{/foreach}-->
+                        	</tr>
+                        </tbody>
+                    </table>
+                    <!--{elseif $bill_type}-->
+                    <div style="text-align:center;font-size: 18px;color: red;font-weight: bold;">没有当天的交易记录</div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

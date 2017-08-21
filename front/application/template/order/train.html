@@ -1,0 +1,135 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" id="container">
+	<img src="<!--{base_url()}-->static/image/train-top.png" style="width:160%;" />
+	<div class="train_title">
+		<span>热身</span>
+		<span class="train_title_en">WARM</span>
+	</div>
+	<table class="train_table" border="0" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>ACTIVITY</th>
+				<th>时间</th>
+				<th>距离</th>
+				<th>组</th>
+				<th>次</th>
+				<th>强度</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="train_sept"><td colspan="7"> </td></tr>
+			<!--{for $i=0;$i<$max_warn;$i++}-->
+			<tr class="train_data">
+				<td><!--{isset($result['warn_activity']) ? $result['warn_activity'][$i] : ''}--></td>
+				<td><!--{isset($result['warn_time']) ? $result['warn_time'][$i] : ''}--></td>
+				<td><!--{isset($result['warn_dist']) ? $result['warn_dist'][$i] : ''}--></td>
+				<td><!--{isset($result['warn_sets']) ? $result['warn_sets'][$i] : ''}--></td>
+				<td><!--{isset($result['warn_rep']) ? $result['warn_rep'][$i] : ''}--></td>
+				<td><!--{isset($result['warn_intensity']) ? $result['warn_intensity'][$i] : ''}--></td>
+				<td><!--{isset($result['warn_notes']) ? $result['warn_notes'][$i] : ''}--></td>
+			</tr>
+			<!--{/for}-->
+		</tbody>
+	</table>
+	
+	<div class="train_title">
+		<span>力量训练</span>
+		<span class="train_title_en">STRENGTH TRAINING</span>
+	</div>
+	<table class="train_table" border="0" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>EXERCISES</th>
+				<th>组</th>
+				<th>次</th>
+				<th>重量/RM</th>
+				<th>REST TIME</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="train_sept"><td colspan="7"> </td></tr>
+			<!--{for $i=0;$i<$max_stre;$i++}-->
+			<tr class="train_data">
+				<td><!--{isset($result['stre_exercises']) ? $result['stre_exercises'][$i] : ''}--></td>
+				<td><!--{isset($result['stre_sets']) ? $result['stre_sets'][$i] : ''}--></td>
+				<td><!--{isset($result['stre_reps']) ? $result['stre_reps'][$i] : ''}--></td>
+				<td><!--{isset($result['stre_weight']) ? $result['stre_weight'][$i] : ''}--></td>
+				<td><!--{isset($result['stre_resttime']) ? $result['stre_resttime'][$i] : ''}--></td>
+				<td><!--{isset($result['stre_notes']) ? $result['stre_notes'][$i] : ''}--></td>
+			</tr>
+			<!--{/for}-->
+		</tbody>
+	</table>
+	
+	<div class="train_title">
+		<span>有氧训练</span>
+		<span class="train_title_en">CARDIO TRAINNING</span>
+	</div>
+	<table class="train_table" border="0" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>EXERCISES</th>
+				<th>时间</th>
+				<th>距离</th>
+				<th>靶心率</th>
+				<th>强度</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="train_card"><td colspan="7"> </td></tr>
+			<!--{for $i=0;$i<$max_card;$i++}-->
+			<tr class="train_data">
+				<td><!--{isset($result['card_execises']) ? $result['card_execises'][$i] : ''}--></td>
+				<td><!--{isset($result['card_time']) ? $result['card_time'][$i] : ''}--></td>
+				<td><!--{isset($result['card_dist']) ? $result['card_dist'][$i] : ''}--></td>
+				<td><!--{isset($result['card_target']) ? $result['card_target'][$i] : ''}--></td>
+				<td><!--{isset($result['card_intensity']) ? $result['card_intensity'][$i] : ''}--></td>
+				<td><!--{isset($result['card_notes']) ? $result['card_notes'][$i] : ''}--></td>
+			</tr>
+			<!--{/for}-->
+		</tbody>
+	</table>
+	
+	<div class="train_title">
+		<span>冷身</span>
+		<span class="train_title_en">COOL DOWN</span>
+	</div>
+	<table class="train_table" border="0" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>ACTIVITY</th>
+				<th>时间</th>
+				<th>距离</th>
+				<th>组</th>
+				<th>次</th>
+				<th>强度</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="train_sept"><td colspan="7"> </td></tr>
+			<!--{for $i=0;$i<$max_cool;$i++}-->
+			<tr class="train_data">
+				<td><!--{isset($result['cool_activity']) ? $result['cool_activity'][$i] : ''}--></td>
+				<td><!--{isset($result['cool_time']) ? $result['cool_time'][$i] : ''}--></td>
+				<td><!--{isset($result['cool_dist']) ? $result['cool_dist'][$i] : ''}--></td>
+				<td><!--{isset($result['cool_sets']) ? $result['cool_sets'][$i] : ''}--></td>
+				<td><!--{isset($result['cool_reps']) ? $result['cool_reps'][$i] : ''}--></td>
+				<td><!--{isset($result['cool_intensity']) ? $result['cool_intensity'][$i] : ''}--></td>
+				<td><!--{isset($result['cool_notes']) ? $result['cool_notes'][$i] : ''}--></td>
+			</tr>
+			<!--{/for}-->
+		</tbody>
+	</table>
+	
+</div>
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideOptionMenu');
+});
+</script>
+<!--{include file='inc/tabbar.html'}-->
+<!--{include file='inc/footer.html'}-->

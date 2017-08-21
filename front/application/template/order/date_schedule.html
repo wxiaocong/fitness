@@ -1,0 +1,18 @@
+			<!--{foreach $ltime as $k=>$v}-->
+			<div class="box-content">
+				<div  class="content-item">
+					<div class="yy_time"><!--{$v}--></div>
+					<div class="yy_cz">
+						<!--{if !empty($schedule_order) && in_array($v, $schedule_order)}-->						
+						<a href="javascript:void(0);" class="yy_false">已预约</a>
+						<!--{elseif $date_num == 0 && intval($v) <= date('H')}-->
+						<a href="javascript:void(0);" class="yy_false">已结束</a>
+						<!--{elseif !empty($schedule_time) && in_array($v, $schedule_time)}-->
+						<a href="javascript:void(0);" time="<!--{$k}-->" class="yy_true">可预约</a>
+						<!--{else}-->
+						<a href="javascript:void(0);" class="yy_false">未开放</a>
+						<!--{/if}-->
+					</div>
+				</div>	
+			</div>
+			<!--{/foreach}-->

@@ -1,0 +1,26 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" id="container">
+	<!--banner 开始-->
+	<!--{include file='inc/slide.html'}-->
+	<!--banner 结束-->
+	<!--门店开始-->
+	<div id="weui-tab">
+		<!--{foreach $list['data'] as $val}-->
+		<div class="weui-tab_md">
+			<a href="<?php echo base_url();?>store/detail/<!--{$val['store_id']}-->"><img alt="" src="<!--{$val['img1']}-->"></a>
+		</div>
+		<!--{/foreach}-->
+		
+		<div style="text-align: center;font-size: 12px;height: 50px;line-height: 40px;color: #999;">
+			CUSTOMIZE ONE HOUR HEALTH
+		</div>
+	</div>
+	<!--门店结束-->
+</div>
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideOptionMenu');
+});
+</script>
+<!--{include file='inc/tabbar.html'}-->
+<!--{include file='inc/footer.html'}-->

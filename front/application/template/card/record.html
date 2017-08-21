@@ -1,0 +1,474 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" id="container">
+	<img src="<!--{base_url()}-->static/image/record-top.png" style="width:100%;" />
+	<div class="file_title">
+		<span>姓名 <!--{$user_info['nickname']}--></span>
+		<span>年龄 <!--{$user_info['age']}--></span>
+		<span>日期 <!--{$user_info['subscribe_time']?date('Y-m-d',$user_info['subscribe_time']):''}--></span>
+	</div>
+	<div style="width:96%;/* overflow:scroll; */margin:0 auto;">
+	<table class="file_table" border="0" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th class="left-title">会员<br/>测试</th>
+       			<th>测试<br/>结果</th>
+       			<th>会员<br/>目标</th>
+       			<th>测试<br/>结果</th>
+       			<th>测试<br/>结果</th>
+       			<th>测试<br/>结果</th>
+       			<th>测试<br/>结果</th>
+       			<!--{if isset($result['test_date']) && count($result['test_date']) > 6}-->
+      			<!--{for $i=6;$i<count($result['test_date']);$i++}-->
+      			<th>测试<br/>结果</th>
+      			<!--{/for}-->
+      			<!--{/if}-->
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+  				<td>日期</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_date'][$i]) ? $result['test_date'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>身高</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_height'][$i]) ? $result['test_height'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>体重</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_weight'][$i]) ? $result['test_weight'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>BMI</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_bmi'][$i]) ? $result['test_bmi'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>静息心率</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_heart_rate'][$i]) ? $result['test_heart_rate'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>
+  					<div style="line-height:20px;">血压</div>
+  					<div style="line-height:20px;"><small>(舒张压/收缩压)</small></div>
+  				</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_blood_pressure'][$i]) ? $result['test_blood_pressure'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>大腿围</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_thign'][$i]) ? $result['test_thign'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>大臂围</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_arm'][$i]) ? $result['test_arm'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>腰围</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_waist'][$i]) ? $result['test_waist'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>臀围</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_hipline'][$i]) ? $result['test_hipline'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>腰臀比</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_whr'][$i]) ? $result['test_whr'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>
+  					<div style="line-height:20px;">体脂</div>
+  					<div style="line-height:20px;">(胸/三围)</div>
+  				</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_fat_top'][$i]) ? $result['test_fat_top'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>体脂(大腿)</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_fat_thign'][$i]) ? $result['test_fat_thign'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>
+  					<div style="line-height:20px;">体脂</div>
+  					<div style="line-height:20px;">(腹/髂上)</div>
+  				</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_fat_abdomen'][$i]) ? $result['test_fat_abdomen'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+  			<tr>
+  				<td>总体体脂</td>
+  				<!--{for $i=0;$i<count($result['test_date']);$i++}-->
+  				<td><!--{isset($result['test_fat_total'][$i]) ? $result['test_fat_total'][$i] : ''}--></td>
+  				<!--{/for}-->
+  			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+	<div class="train_title">
+		<span>静态评估</span>
+		<span class="train_title_en"> STATIC ACCESSMENT</span>
+	</div>
+	<div class="file_title">
+		<span>部位 </span>
+		<span>注意事项</span>
+	</div>
+	<table class="file_acc_table table_acc"  border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th>祼关节姿势</th>
+			<td>
+				内旋 <input type="radio" disabled name="static_ankle" value="1" <!--{isset($result['static_ankle']) && $result['static_ankle'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				外旋 <input type="radio" disabled name="static_ankle" value="2" <!--{isset($result['static_ankle']) && $result['static_ankle'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				超伸 <input type="radio" disabled name="static_ankle" value="3" <!--{isset($result['static_ankle']) && $result['static_ankle'] == '3' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>足部姿势</th>
+			<td>
+				内翻 <input type="radio" disabled name="static_foot" value="1" <!--{isset($result['static_foot']) && $result['static_foot'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				外翻 <input type="radio" disabled name="static_foot" value="2" <!--{isset($result['static_foot']) && $result['static_foot'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<th>膝关节</th>
+			<td>
+				内旋 <input type="radio" disabled name="static_knee" value="1" <!--{isset($result['static_knee']) && $result['static_knee'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				外旋 <input type="radio" disabled name="static_knee" value="2" <!--{isset($result['static_knee']) && $result['static_knee'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				超伸 <input type="radio" disabled name="static_knee" value="3" <!--{isset($result['static_knee']) && $result['static_knee'] == '3' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>骨盆</th>
+			<td>
+				 前倾<input type="radio" disabled name="static_bone" value="1" <!--{isset($result['static_bone']) && $result['static_bone'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				后倾 <input type="radio" disabled name="static_bone" value="2" <!--{isset($result['static_bone']) && $result['static_bone'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				侧倾 <input type="radio" disabled name="static_bone" value="3" <!--{isset($result['static_bone']) && $result['static_bone'] == '3' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>腰椎</th>
+			<td>
+				前弯 <input type="radio" disabled name="static_waist" value="1" <!--{isset($result['static_waist']) && $result['static_waist'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				平背 <input type="radio" disabled name="static_waist" value="2" <!--{isset($result['static_waist']) && $result['static_waist'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				侧弯 <input type="radio" disabled name="static_waist" value="3" <!--{isset($result['static_waist']) && $result['static_waist'] == '3' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>胸椎</th>
+			<td>
+				后弯 <input type="radio" disabled name="static_chest" value="1" <!--{isset($result['static_chest']) && $result['static_chest'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				过伸 <input type="radio" disabled name="static_chest" value="2" <!--{isset($result['static_chest']) && $result['static_chest'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				圆肩 <input type="radio" disabled name="static_chest" value="3" <!--{isset($result['static_chest']) && $result['static_chest'] == '3' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>肩部</th>
+			<td>
+				高低肩 <input type="radio" disabled name="static_shoulder" value="1" <!--{isset($result['static_shoulder']) && $result['static_shoulder'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				耸肩 <input type="radio" disabled name="static_shoulder" value="2" <!--{isset($result['static_shoulder']) && $result['static_shoulder'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				翼状肩 <input type="radio" disabled name="static_shoulder" value="3" <!--{isset($result['static_shoulder']) && $result['static_shoulder'] == '3' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>肩胛骨</th>
+			<td>
+				肩胛前引 <input type="radio" disabled name="static_shoulder_blade" value="1" <!--{isset($result['static_shoulder_blade']) && $result['static_shoulder_blade'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+			</td>
+			<td>
+				翼状肩 <input type="radio" disabled name="static_shoulder_blade" value="2" <!--{isset($result['static_shoulder_blade']) && $result['static_shoulder_blade'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>头部</th>
+			<td>
+				前伸 <input type="radio" disabled name="static_head" value="1" <!--{isset($result['static_head']) && $result['static_head'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				侧屈 <input type="radio" disabled name="static_head" value="2" <!--{isset($result['static_head']) && $result['static_head'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				旋转 <input type="radio" disabled name="static_head" value="3" <!--{isset($result['static_head']) && $result['static_head'] == '3' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>双耳</th>
+			<td>
+				左低 <input type="radio" disabled name="static_binaural" value="1" <!--{isset($result['static_binaural']) && $result['static_binaural'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				右低 <input type="radio" disabled name="static_binaural" value="2" <!--{isset($result['static_binaural']) && $result['static_binaural'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	
+	<div class="train_title">
+		<span>动态评估</span>
+		<span class="train_title_en"> DYNAMIC ACCESSMENT</span>
+	</div>
+	<div class="file_title">
+		<span>部位 </span>
+		<span>评估结果</span>
+	</div>
+	<table class="file_acc_table table_dyn"  border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th>托马斯测试</th>
+			<td>左髋</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_tms_left" value="1" <!--{isset($result['dynamic_tms_left']) && $result['dynamic_tms_left'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_tms_left" value="2" <!--{isset($result['dynamic_tms_left']) && $result['dynamic_tms_left'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>右髋</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_tms_right" value="1" <!--{isset($result['dynamic_tms_right']) && $result['dynamic_tms_right'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_tms_right" value="2" <!--{isset($result['dynamic_tms_right']) && $result['dynamic_tms_right'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>被动抬腿实验</th>
+			<td>左腿</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_bdtt_left" value="1" <!--{isset($result['dynamic_bdtt_left']) && $result['dynamic_bdtt_left'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_bdtt_left" value="2" <!--{isset($result['dynamic_bdtt_left']) && $result['dynamic_bdtt_left'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>右腿</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_bdtt_right" value="1" <!--{isset($result['dynamic_bdtt_right']) && $result['dynamic_bdtt_right'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_bdtt_right" value="2" <!--{isset($result['dynamic_bdtt_right']) && $result['dynamic_bdtt_right'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>肩关节外旋</th>
+			<td>左肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjwx_left" value="1" <!--{isset($result['dynamic_jgjwx_left']) && $result['dynamic_jgjwx_left'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjwx_left" value="2" <!--{isset($result['dynamic_jgjwx_left']) && $result['dynamic_jgjwx_left'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>右肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjwx_right" value="1" <!--{isset($result['dynamic_jgjwx_right']) && $result['dynamic_jgjwx_right'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjwx_right" value="2" <!--{isset($result['dynamic_jgjwx_right']) && $result['dynamic_jgjwx_right'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>肩关节内旋</th>
+			<td>左肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjnx_left" value="1" <!--{isset($result['dynamic_jgjnx_left']) && $result['dynamic_jgjnx_left'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjnx_left" value="2" <!--{isset($result['dynamic_jgjnx_left']) && $result['dynamic_jgjnx_left'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>右肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjnx_right" value="1" <!--{isset($result['dynamic_jgjnx_right']) && $result['dynamic_jgjnx_right'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjnx_right" value="2" <!--{isset($result['dynamic_jgjnx_right']) && $result['dynamic_jgjnx_right'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>肩关节伸展</th>
+			<td>左肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjsz_left" value="1" <!--{isset($result['dynamic_jgjsz_left']) && $result['dynamic_jgjsz_left'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjsz_left" value="2" <!--{isset($result['dynamic_jgjsz_left']) && $result['dynamic_jgjsz_left'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>右肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjsz_right" value="1" <!--{isset($result['dynamic_jgjsz_right']) && $result['dynamic_jgjsz_right'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjsz_right" value="2" <!--{isset($result['dynamic_jgjsz_right']) && $result['dynamic_jgjsz_right'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>肩关节屈伸</th>
+			<td>左肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjqs_left" value="1" <!--{isset($result['dynamic_jgjqs_left']) && $result['dynamic_jgjqs_left'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjqs_left" value="2" <!--{isset($result['dynamic_jgjqs_left']) && $result['dynamic_jgjqs_left'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>右肩</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_jgjqs_right" value="1" <!--{isset($result['dynamic_jgjqs_right']) && $result['dynamic_jgjqs_right'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_jgjqs_right" value="2" <!--{isset($result['dynamic_jgjqs_right']) && $result['dynamic_jgjqs_right'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+		<tr>
+			<th>胸椎灵活性</th>
+			<td>左转</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_xzlhx_left" value="1" <!--{isset($result['dynamic_xzlhx_left']) && $result['dynamic_xzlhx_left'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_xzlhx_left" value="2" <!--{isset($result['dynamic_xzlhx_left']) && $result['dynamic_xzlhx_left'] == '2' ? 'checked' : ''}--> />
+			</td>
+			<td>右转</td>
+			<td>
+				<span>紧张</span> <input type="radio" disabled name="dynamic_xzlhx_right" value="1" <!--{isset($result['dynamic_xzlhx_right']) && $result['dynamic_xzlhx_right'] == '1' ? 'checked' : ''}--> />
+			</td>
+			<td>
+				<span>正常</span> <input type="radio" disabled name="dynamic_xzlhx_right" value="2" <!--{isset($result['dynamic_xzlhx_right']) && $result['dynamic_xzlhx_right'] == '2' ? 'checked' : ''}--> />
+			</td>
+		</tr>
+	</table>
+
+	<div class="file_title">
+		<span>动作筛查 </span>
+		<span>代偿情况</span>
+		<span>可能原因</span>
+	</div>
+	<table class="file_table file_table_sc"  border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="small_th">过项蹲</td>
+			<td>
+				<!--{isset($result['act_gdd_dc']) ? $result['act_gdd_dc'] : ''}-->
+			</td>
+			<td>
+				<!--{isset($result['act_gdd_yy']) ? $result['act_gdd_yy'] : ''}-->
+			</td>
+		</tr>
+		<tr>
+			<td class="small_th">跨栏上步</td>
+			<td>
+				<!--{isset($result['act_klsb_dc']) ? $result['act_klsb_dc'] : ''}-->
+			</td>
+			<td>
+				<!--{isset($result['act_klsb_yy']) ? $result['act_klsb_yy'] : ''}-->
+			</td>
+		</tr>
+		<tr>
+			<td class="small_th">俯卧撑</td>
+			<td>
+				<!--{isset($result['act_fwc_dc']) ? $result['act_fwc_dc'] : ''}-->
+			</td>
+			<td>
+				<!--{isset($result['act_fwc_yy']) ? $result['act_fwc_yy'] : ''}-->
+			</td>
+		</tr>
+	</table>
+
+	<div class="file_title">
+		<span>动作筛查 </span>
+		<span>时间</span>
+	</div>
+	<table class="file_acc_table table_qg"  border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td rowspan="7">躯干肌耐力测试</td>
+			<td>躯干屈肌耐力实验</td>
+			<td colspan="2"><!--{isset($result['act_qj']) ? $result['act_qj'] : ''}--></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>躯干侧屈耐力实验</td>
+			<td style="width:50px;">左<!--{isset($result['act_cq_left']) ? $result['act_cq_left'] : ''}--></td>
+			<td style="width:50px;">右<!--{isset($result['act_cq_right']) ? $result['act_cq_right'] : ''}--></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>躯干伸肌耐力实验</td>
+			<td colspan="2"><!--{isset($result['act_sj']) ? $result['act_sj'] : ''}--></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>屈/伸</td>
+			<td colspan="2"><!--{isset($result['act_qs']) ? $result['act_qs'] : ''}--></td>
+			<td><1</td>
+		</tr>
+		<tr>
+			<td>右侧桥/左侧桥</td>
+			<td colspan="2"><!--{isset($result['act_rlcq']) ? $result['act_rlcq'] : ''}--> </td>
+			<td>0.95-1.05</td>
+		</tr>
+		<tr>
+			<td>测桥/伸</td>
+			<td colspan="2"><!--{isset($result['act_cqs']) ? $result['act_cqs'] : ''}--></td>
+			<td><0.75</td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideOptionMenu');
+});
+</script>
+<!--{include file='inc/tabbar.html'}-->
+<!--{include file='inc/footer.html'}-->

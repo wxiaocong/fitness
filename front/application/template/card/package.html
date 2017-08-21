@@ -1,0 +1,33 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" id="container">	
+	<div class="content">
+		<div class="weui-confirm" style="font-size:16px;">
+			套餐信息
+		</div>
+	</div>	
+	<div class="ncon">
+		<div class="weui-cells">
+			<!--{if ! empty($list)}-->
+			<!--{foreach $list as $val}-->
+			<a class="weui-cell weui-cell_access" href="<!--{base_url()}-->card/package_info/<!--{$val['package_id']}-->"  style="font-size:12px;">
+                <div class="weui-cell__bd">
+                    <p><!--{$val['course_name']}-->(<!--{$val['coach_name']}-->)</p>
+                </div>
+                <div class="weui-cell__ft"><!--{$val['num']}-->次</div>
+            </a>
+            <!--{/foreach}-->
+            <!--{else}-->
+            <div style="text-align:center;"><a href="<!--{base_url()}-->card/open_member" style="color:#555;">暂无套餐,点击购买</a></div>
+            <!--{/if}-->
+            
+        </div>
+	</div>	
+</div>
+
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideOptionMenu');
+});
+</script>
+<!--{include file='inc/tabbar.html'}-->
+<!--{include file='inc/footer.html'}-->

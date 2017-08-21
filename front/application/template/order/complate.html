@@ -1,0 +1,27 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" id="container">
+	<div class="content">
+		<div class="nothing"></div>
+		<div class="tel_img">
+			<img alt="" src="<!--{base_url()}-->static/image/tel.png">
+		</div>
+		<div class="ts_msg">
+			<div>您的订单信息已提交成功</div>
+			<div>请致电门店进行最终确认</div>
+		</div>
+		<div class="tel-num">
+			0755-83926657
+		</div>
+	</div>
+</div>
+<div class="weui-tabbar">
+	<a href="tel:075584034980" class="weui-btn weui-btn_primary">拨号</a>
+</div>
+<script type="text/javascript" src="<!--{base_url()}-->static/js/jquery.min.js"></script>
+<!--{if isset($footerJs) && !empty($footerJs)}-->
+<!--{foreach $footerJs as $key => $value}-->
+<script type="text/javascript" src="<!--{base_url()}-->static/js/<!--{$value}-->?v=2.3"></script>
+<!--{/foreach}-->
+<!--{/if}-->
+</body>
+</html>

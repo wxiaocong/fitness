@@ -1,0 +1,88 @@
+<!--{include file='inc/header.html'}-->
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-comment"></i> 教练管理</h3>
+
+                    <div class="box-tool">
+                    	<a href="<!--{base_url()}-->shop/coach/" class="btn btn-info">返回上一级</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form name="addForm" id="addForm" enctype="multipart/form-data" method="post" action="<!--{base_url()}-->shop/coach/save/<!--{isset($result) ? $result['coach_id'] : ''}-->">
+                        <table class="table table-advance">
+                        	<tr>
+                                <td  align="right"><label></label>门店：</td>
+                                <td><label for="username"></label>
+                                   <select name="store_id" class="form-control">
+									  <!--{if !empty($store)}-->						          
+	                        		  <!--{foreach $store as  $key=>$value}-->
+	                        		  <option <!--{if isset($result) && $result['store_id'] == $key}-->selected<!--{/if}--> value="<!--{$key}-->"><!--{$value}--></option>
+	                        		  <!--{/foreach}-->
+	                        		  <!--{/if}-->	
+									</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>用户名：</td>
+                                <td>
+                                    <input type="text" name="uname" id="uname" required value="<!--{isset($result) ? $result['uname'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>密码：</td>
+                                <td>
+                                    <input type="password" name="passwd" id="passwd" <!--{if ! isset($result)}-->required<!--{/if}--> ></td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>真实名：</td>
+                                <td><label for="username"></label>
+                                    <input type="text" name="realname" id="realname" required value="<!--{isset($result) ? $result['realname'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>显示名：</td>
+                                <td><label for="username"></label>
+                                    <input type="text" name="coach_name" id="coach_name" value="<!--{isset($result) ? $result['coach_name'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>头像：</td>
+                                <td>
+                                	<!--{if isset($result) && $result['pic_persion'] != ''}-->
+                                	<img style="width: 100px;" src="<!--{$result['pic_persion']}-->" class="img-circle">
+                                	<!--{/if}-->
+                                	<input type="file" name="pic_persion" id="inputfile">
+                                	<p class="help-block">最大200KB</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>个人简介：</td>
+                                <td><label for="username"></label>
+                                	<textarea rows="5" style="width:80%;" name="profile" id="profile" ><!--{isset($result) ? $result['profile'] : ''}--></textarea></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                	<input type="submit" class="btn btn-primary seperate_button" id="button" value="保存">
+                                	<!--{if isset($result)}-->
+                                	<a class="btn btn-warning seperate_button" href="<!--{base_url()}-->shop/coach/status/<!--{$result['coach_id']}-->/<!--{$result['disabled']}-->"><!--{if $result['disabled']=='0'}-->禁用<!--{else}-->启用<!--{/if}--></a>
+                                	<!--{/if}-->
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+
+<!--{include file='inc/footer.html'}-->

@@ -1,0 +1,122 @@
+<!--{include file='inc/header.html'}-->
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-comment"></i> 分店管理</h3>
+
+                    <div class="box-tool">
+                    	<a href="<!--{base_url()}-->shop/store" class="btn btn-info">返回上一级</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form name="addForm" id="addForm"  enctype="multipart/form-data" method="post" action="<!--{base_url()}-->shop/store/save/<!--{isset($result) ? $result['store_id'] : ''}-->">
+                        <table class="table table-advance">
+                            <tr>
+                                <td width="100" align="right"><label></label>店名：</td>
+                                <td><label for="username"></label>
+                                    <input type="text" name="name" id="name" required value="<!--{isset($result) ? $result['name'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>图片：</td>
+                                <td>
+                                	<!--{if isset($result) && $result['img1'] != ''}-->
+                                	<img style="width: 100px;" src="<!--{$result['img1']}-->" >
+                                	<!--{/if}-->
+                                	<input type="file" name="img1" id="inputfile">
+                                	<p class="help-block">最大512KB</p>
+                                </td>
+                            </tr>                            
+                            <tr>
+                                <td width="100" align="right"><label></label>电话：</td>
+                                <td><label for="username"></label>
+                                    <input type="text" name="tel" id="tel" required value="<!--{isset($result) ? $result['tel'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>城市：</td>
+                                <td><label for="city"></label>
+                                	<select name="city" id="city" class="form-control">
+						          	  <option></option>
+									  <!--{if !empty($city)}-->						          
+		                      		  <!--{foreach $city as $value}-->
+		                      		  <option value="<!--{$value['area_id']}-->" <!--{if isset($result) && $result['city'] == $value['area_id']}-->selected<!--{/if}-->><!--{$value['name']}--></option>
+		                      		  <!--{/foreach}-->
+		                      		  <!--{/if}-->	
+									</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>地区：</td>
+                                <td><label for="area"></label>
+                                	<select name="area" id="area" class="form-control">
+                                		<option></option>
+                                		<!--{if !empty($area)}-->						          
+			                      		  <!--{foreach $area as $val}-->
+			                      		  <option value="<!--{$val['area_id']}-->" <!--{if isset($result) && $result['area'] == $val['area_id']}-->selected<!--{/if}-->><!--{$val['name']}--></option>
+			                      		  <!--{/foreach}-->
+			                      		  <!--{/if}-->	
+                                	</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>详细地址：</td>
+                                <td><label for="username"></label>
+                                    <input type="text" name="addr" id="addr"  style="width:50%;"  required value="<!--{isset($result) ? $result['addr'] : ''}-->" >
+                                	<p class="help-block">包括城市地区</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>地址链接：</td>
+                                <td><label for="username"></label>
+                                    <input type="text" name="addr_link" id="addr_link" style="width:50%;" required value="<!--{isset($result) ? $result['addr_link'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>经度：</td>
+                                <td><label for="longitude"></label>
+                                    <input type="text" name="longitude" id="longitude" required value="<!--{isset($result) ? $result['longitude'] : ''}-->" >
+                                   <div class="help-block"><a href="http://lbs.qq.com/tool/getpoint/index.html" target="_blank">坐标拾取器</a></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>纬度：</td>
+                                <td><label for="latitude"></label>
+                                    <input type="text" name="latitude" id="latitude" required value="<!--{isset($result) ? $result['latitude'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>简介：</td>
+                                <td><label for="username"></label>
+                                    <textarea rows="5" style="width:50%;" name="content" id="content" ><!--{isset($result) ? $result['content'] : ''}--></textarea></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>注意事项：</td>
+                                <td>
+                                	<script id="container" name="notice" type="text/plain"><!--{isset($result) ? $result['notice'] : ''}--></script>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                	<input type="submit" class="btn btn-primary seperate_button" id="button" value="保存">
+                                	<!--{if  $role_id == 1 && isset($result)}-->
+                                	<a class="btn btn-warning seperate_button" href="<!--{base_url()}-->shop/store/status/<!--{$result['store_id']}-->/<!--{$result['disabled']}-->"><!--{if $result['disabled']=='0'}-->禁用<!--{else}-->启用<!--{/if}--></a>
+                                	<!--{/if}-->
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+
+<!--{include file='inc/footer.html'}-->

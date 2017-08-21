@@ -1,0 +1,26 @@
+<div class="weui-tabbar">
+	<a href="<!--{base_url()}-->store" class="weui-tabbar__item">
+        <span style="display: inline-block;position: relative;">
+            <img src="<!--{base_url()}-->static/image/<!--{$uri_string == '' || stristr($uri_string,'store') ? 'iconMDO.png' : 'iconMD.png'}-->" class="weui-tabbar__icon">
+        </span>
+        <div class="weui-tabbar__label<!--{$uri_string == '' || stristr($uri_string,'store') ? ' item_on' : ''}-->">门店</div>
+    </a>
+    <a href="<!--{base_url()}-->course" class="weui-tabbar__item">
+        <span style="display: inline-block;position: relative;">
+            <img src="<!--{base_url()}-->static/image/<!--{stristr($uri_string,'course') ? 'iconKCO.png' : 'iconKC.png'}-->" class="weui-tabbar__icon">
+        </span>
+        <div class="weui-tabbar__label<!--{stristr($uri_string,'course') ? ' item_on' : ''}-->">课程</div>
+    </a>
+    <a href="<!--{base_url()}-->order" class="weui-tabbar__item">
+        <span style="display: inline-block;position: relative;">
+            <img src="<!--{base_url()}-->static/image/<!--{stristr($uri_string,'order') ? 'iconFSO.png' : 'iconFS.png'}-->" class="weui-tabbar__icon">
+        </span>
+        <div style="padding: 10px 0 2px 0;" class="weui-tabbar__label<!--{stristr($uri_string,'order') ? ' item_on' : ''}-->">FUSION</div>
+    </a>
+    <a href="<!--{base_url()}-->card" class="weui-tabbar__item">
+        <span style="display: inline-block;position: relative;">
+            <img src="<!--{base_url()}-->static/image/<!--{stristr($uri_string,'card') ? 'iconHYO.png' : 'iconHY.png'}-->" class="weui-tabbar__icon">
+        </span>
+        <div class="weui-tabbar__label<!--{stristr($uri_string,'card') ? ' item_on' : ''}-->">会员</div>
+    </a>
+</div>

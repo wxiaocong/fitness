@@ -1,0 +1,116 @@
+<!--{include file='inc/header.html'}-->
+<style type="text/css">
+.table-bordered th{
+	text-align: center;
+    vertical-align: middle;	
+}
+</style>
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 课程预约</h3>
+
+                </div>
+                <div class="box-content" style="overflow: scroll;">
+                	<form method="post" id="order_form" action="<!--{base_url()}-->course/schedule/save">
+                	<fieldset>
+	                	<legend>课程信息</legend>
+	                	<table class="table table-bordered">
+	                			<tr>
+		                			<th>分店</th>
+		                			<th>课程类型</th>
+		                			<th>课程分类</th>
+		                			<th>课程</th>
+		                			<th>教练</th>
+		                			<th>价格</th>
+		                			<th>人数</th>
+		                			<th>日期</th>
+		                			<th>时间</th>
+		                			<!-- <td rowspan="2" style="vertical-align: middle;">
+	                					<input type="button"  class="btn btn-primary" value="预约" id="pre_order" />
+	                				</td> -->
+	                			</tr>
+	                			<tr>
+	                				<td>
+	                					<select id="store" class="form-control" style="width:120px;">
+											  <!--{if !empty($store_list)}-->						          
+				                      		  <!--{foreach $store_list as  $key1=>$value1}-->
+				                      		  <option value="<!--{$key1}-->"><!--{$value1}--></option>
+				                      		  <!--{/foreach}-->
+				                      		  <!--{/if}-->	
+										</select>
+	                				</td>
+	                				<td>
+	                					<select id="course_type" name="course_type" class="form-control" style="width:100px;">
+				                      		 <option value="1">普通课程</option>
+				                      		 <option value="2">私教课程</option>
+										</select>
+	                				</td>
+	                				<td>
+	                					<select id="tag" class="form-control" style="width:120px;" url="<!--{base_url()}-->order/book/get_store_tag/">
+											 <option></option>
+											 <!--{if !empty($tag_list)}-->	
+											 <!--{foreach $tag_list as $value2}-->
+				                      		 <option value="<!--{$value2['tag_id']}-->"><!--{$value2['tag_name']}--></option>
+				                      		 <!--{/foreach}-->
+				                      		 <!--{/if}-->	
+										</select>
+	                				</td>
+	                				<td>
+	                					<select name="course" id="course" class="form-control" style="width:120px;">
+										</select>
+	                				</td>
+	                				<td>
+	                					<select name="coach" id="coach" class="form-control" style="width:120px;">
+										</select>
+	                				</td>
+	                				<td id="course_price" style="vertical-align: middle;"></td>
+	                				<td><input type="number" min="1" name="num" id="num" style="width:40px;" value="1" /></td>
+	                				<td>
+	                					<input type="text" name="date" id="date" style="width:90px;" class="Wdate search_time" onClick="WdatePicker({readOnly:true,minDate:'<!--{date('Y-m-d')}-->',dateFmt:'yyyy-MM-dd',onpicked:function(dp){change_start_date(dp)}})" />
+	                				</td>
+	                				<td>
+	                					<select name="time" id="time" style="width:150px;">
+	                					</select>
+	                				</td>
+	                			</tr>
+	                	</table>
+	                	<!-- <div id="order_num" style="display:none;">
+	                		<div>课程最大可预约人数：<em id="course_max_order" style="color:red;"></em> 人</div>
+	                		<div>该时间段已预约人数：<em id="have_order_num" style="color:red;"></em> 人</div>
+	                	</div> -->
+	                	</fieldset>
+	                	
+	                	<fieldset>
+	                		<legend>会员查询</legend>
+	                			<div>
+		                			<span>会员号：<input type="text" id="no" /></span>
+			                		<span>手机号：<input type="text" id="phone" /></span>
+			                		<span>昵称：<input type="text" id="nickname" /></span>
+			                		<span>&nbsp;<input type="button"  class="btn btn-primary" value="查询" id="search_user" /></span>
+		                		</div>
+		                		<div id="userinfo" style="display:none;">
+		                			
+		                		</div>
+	                	</fieldset>
+						<div style="text-align: center;margin-top: 10px;">
+	                		<input type="button" style="width:100px;" class="btn btn-primary" disabled="disabled" id="confirm_order" value="确定预约">
+	                	</div>
+					</form>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

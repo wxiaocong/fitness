@@ -1,0 +1,91 @@
+<input type="hidden" id="host" value="<!--{base_url()}-->">
+<script type="text/javascript" src="<!--{base_url()}-->static/js/jquery.min.js"></script>
+<!--{if isset($footerJs) && !empty($footerJs)}-->
+<!--{foreach $footerJs as $key => $value}-->
+<script type="text/javascript" src="<!--{base_url()}-->static/js/<!--{$value}-->?v=2.3"></script>
+<!--{/foreach}-->
+<!--{/if}-->
+
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<!--{if ! empty($share)}-->
+<script type="text/javascript">
+	wx.config({
+	    debug: false,
+	    appId: "<!--{$signPackage['appId']}-->",
+	    timestamp: <!--{$signPackage['timestamp']}-->,
+	    nonceStr: "<!--{$signPackage['nonceStr']}-->",
+	    signature: "<!--{$signPackage['signature']}-->",
+	    jsApiList: [
+			'checkJsApi',
+			'onMenuShareTimeline',
+			'onMenuShareAppMessage',
+			'onMenuShareQQ',
+			'onMenuShareWeibo',
+			'onMenuShareQZone',
+	    ]
+	 });
+	wx.ready(function () {
+		wx.checkJsApi({
+		    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'],
+		    success: function(res) {
+		    }
+		});
+        	//分享到朋友圈
+        	wx.onMenuShareTimeline({
+        	    title: "<!--{$share['title']}-->", 
+        	    link: "<!--{base_url()}--><!--{$uri_string}-->",
+        	    imgUrl: "<!--{$share['imgUrl']}-->",
+        	    success: function () { 
+        	    },
+        	    cancel: function () { 
+        	    }
+        	});
+        	//发送给朋友
+        	wx.onMenuShareAppMessage({
+        	    title: "<!--{$share['title']}-->",
+        	    desc: "<!--{$share['desc']}-->", 
+        	    link: "<!--{base_url()}--><!--{$uri_string}-->",
+        	    imgUrl:  "<!--{$share['imgUrl']}-->", 
+        	    success: function () { 
+        	    },
+        	    cancel: function () { 
+        	    }
+        	});
+        	//分享到QQ
+        	wx.onMenuShareQQ({
+        	    title: "<!--{$share['title']}-->", 
+        	    desc: "<!--{$share['desc']}-->", 
+        	    link: "<!--{base_url()}--><!--{$uri_string}-->",
+        	    imgUrl:  "<!--{$share['imgUrl']}-->", 
+        	    success: function () { 
+        	    },
+        	    cancel: function () { 
+        	    }
+        	});
+        	//分享到微博
+        	wx.onMenuShareWeibo({
+        		title: "<!--{$share['title']}-->", 
+        	    desc: "<!--{$share['desc']}-->", 
+        	    link: "<!--{base_url()}--><!--{$uri_string}-->",
+        	    imgUrl:  "<!--{$share['imgUrl']}-->", 
+        	    success: function () { 
+        	    },
+        	    cancel: function () { 
+        	    }
+        	});
+        	//分享到QQ空间
+        	wx.onMenuShareQZone({
+        		title: "<!--{$share['title']}-->", 
+        	    desc: "<!--{$share['desc']}-->", 
+        	    link: "<!--{base_url()}--><!--{$uri_string}-->",
+        	    imgUrl:  "<!--{$share['imgUrl']}-->", 
+        	    success: function () { 
+        	    },
+        	    cancel: function () { 
+        	    }
+        	});
+	});
+</script>	
+<!--{/if}-->
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 用户管理</h3>
+                    <div class="btn-toolbar pull-right clearfix">
+                        <div class="btn-group">
+                            <a class="btn btn-circle show-tooltip" title="增加用户"
+                               href="<!--{base_url()}-->sys/admin/detail"><i class="icon-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-content">
+						<form name="form" id="pform" method="post" action="<!--{base_url()}-->sys/admin/index/">
+						          角色：
+						          <select name="role_id">
+							          <option value="0"></option>
+							          <!--{if !empty($admin_role)}-->						          
+	                        		  <!--{foreach $admin_role as $key => $value}-->
+	                        		  <option value="<!--{$key}-->"  <!--{if $key == $role_id}-->selected<!--{/if}-->><!--{$value['role_name']}--></option>
+	                        		  <!--{/foreach}-->
+	                        		  <!--{/if}-->	
+						          </select>
+						   	 &nbsp;&nbsp;分店：
+						          <select name="store_id">
+							          <option value="0"></option>
+							          <!--{if !empty($store_list)}-->						          
+	                        		  <!--{foreach $store_list as $k => $val}-->
+	                        		  <option value="<!--{$k}-->" <!--{if $k == $store_id}-->selected<!--{/if}-->><!--{$val}--></option>
+	                        		  <!--{/foreach}-->
+                        		  <!--{/if}-->	
+						          </select>   
+						        &nbsp;&nbsp; 用户名：<input type="text" name="uname" class="search_input" value="<!--{$uname}-->" />
+		                        &nbsp;&nbsp;<input type="submit" class="btn" id="button" value="搜索" >
+	                    </form>                     
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                            <th>角色</th>
+                            <th>用户名</th>
+                            <th>真实姓名</th>
+                            <th>分店</th>
+                            <th>状态</th>
+                            <th style="width:100px">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as $key => $value}-->
+                        <tr>
+                            <td><!--{$admin_role[$value['role_id']]['role_name']}--></td>
+                            <td><!--{$value['uname']}--></td>
+                            <td><!--{$value['name']}--></td>
+                            <td><!--{$value['store_name']}--></td>
+                            <th><!--{if $value['disabled']=='0'}-->启用<!--{else}-->禁用<!--{/if}--></th>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small show-tooltip" title="Edit"
+                                       href="<!--{base_url()}-->sys/admin/detail/<!--{$value['admin_id']}-->"><i
+                                            class="icon-edit"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

@@ -1,0 +1,87 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 教练列表</h3>
+					 <!--{if $role_id <= 2}-->
+                    <div class="btn-toolbar pull-right clearfix">
+                        <div class="btn-group">
+                            <a class="btn btn-circle show-tooltip" title="增加教练"
+                               href="<!--{base_url()}-->shop/coach/detail/"><i class="icon-plus"></i></a>
+                        </div>
+                    </div>
+                     <!--{/if}-->	
+                </div>
+                <div class="box-content">
+					<form name="form" id="pform" method="post" action="<!--{base_url()}-->shop/coach/">
+				         <!--{if $role_id == 1}-->
+				         <span>分店：</span>
+				          <select name="store_id" class="form-control">
+				          	  <option></option>
+							  <!--{if !empty($store_list)}-->						          
+                       		  <!--{foreach $store_list as  $key=>$value}-->
+                       		  <option value="<!--{$key}-->" <!--{if $key == $store_id}-->selected<!--{/if}-->><!--{$value}--></option>
+                       		  <!--{/foreach}-->
+                       		  <!--{/if}-->	
+						</select>
+					
+						<span>&nbsp;&nbsp;真实名：</span>
+				        <input type="text" name="realname" value="<!--{$realname}-->" class="form-control">
+				        
+				        <span>&nbsp;&nbsp;显示名：</span>
+				        <input type="text" name=coach_name value="<!--{$coach_name}-->" class="form-control">
+                        &nbsp;&nbsp;<input type="submit" class="btn btn-info" id="button" value="搜索">
+                    	<!--{/if}-->
+                    </form>                     
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                            <th>真实名</th>
+                            <th>显示名</th>
+                            <th>分店</th>
+                            <th>状态</th>
+                            <th style="width:100px">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as $key => $value}-->
+                        <tr>
+                            <td> <!--{$value['realname']}--></td>
+                            <td> <!--{$value['coach_name']}--></td>
+                            <td> <!--{$store_list[$value['store_id']]}--></td>
+                            <th><!--{if $value['disabled']=='0'}-->启用<!--{else}-->禁用<!--{/if}--></th>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small show-tooltip" title="Edit"
+                                       href="<!--{base_url()}-->shop/coach/detail/<!--{$value['coach_id']}-->"><i
+                                            class="icon-edit"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

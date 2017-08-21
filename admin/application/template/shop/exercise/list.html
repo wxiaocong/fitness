@@ -1,0 +1,64 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 列表记录</h3>
+
+                    <div class="btn-toolbar pull-right clearfix">
+                        <div class="btn-group">
+                            <a class="btn show-tooltip" 
+                               href="<!--{base_url()}-->shop/activity/detail/">导出</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-content">
+                	<form name="form" id="pform" method="post" action="<!--{base_url()}-->shop/activity">
+	                </form> 
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                        	<th>卡号</th>
+                            <th>姓名</th>     
+                            <th>手机号</th>  
+                            <th>邮箱</th>
+                            <th>新注册</th>
+                            <th>时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as  $value}-->
+                        <tr>
+                            <td><!--{$value['no']}--></td>
+                            <td><!--{$value['realname']}--></td>
+                            <td><!--{$value['phone']}--></td>
+                            <td><!--{$value['email']}--></td>
+                            <td><!--{if $value['isNew']=='0'}-->否<!--{else}-->是<!--{/if}--></td>
+                            <td><!--{$value['datetime']}--></td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

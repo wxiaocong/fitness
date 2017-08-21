@@ -1,0 +1,162 @@
+<!--{include file='inc/header.html'}-->
+<style type="text/css">
+.small_item{
+	width:50px;
+	text-align:center;
+}
+</style>
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 训练表</h3>
+					<div class="box-tool">
+                    	<a href="<!--{base_url()}-->order/train" class="btn btn-info">返回上一级</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                	<form method="post" id="order_form" action="<!--{base_url()}-->order/train/save/<!--{$order_id}-->/<!--{isset($result['train_id']) ? $result['train_id'] : ''}-->">
+                		<fieldset>
+	                	<legend>WARN 热身
+	                		<a class="btn btn-circle show-tooltip"><i class="icon-plus"></i></a>
+	                	</legend>
+	                	<table class="table table-bordered">
+	                			<tr>
+		                			<th>ACTIVITY</th>
+		                			<th>TIME 时间/DIST距离</th>
+		                			<th>SETS组/REP次</th>
+		                			<th>INTENSITY*强度</th>
+		                			<th>NOTES</th>
+	                			</tr>
+	                			<!--{for $i=0;$i<$max_warn;$i++}-->
+	                			<tr class="warn">
+	                				<td><input type="text" name="warn_activity[]" value="<!--{isset($result['warn_activity']) ? $result['warn_activity'][$i] : ''}-->" /></td>
+	                				<td>
+	                					<input type="text" name="warn_time[]" class="small_item" value="<!--{isset($result['warn_time']) ? $result['warn_time'][$i] : ''}-->" /> / 
+	                					<input type="text" name="warn_dist[]" class="small_item" value="<!--{isset($result['warn_dist']) ? $result['warn_dist'][$i] : ''}-->" />
+	                				</td>
+	                				<td>
+	                					<input type="text" name="warn_sets[]" class="small_item" value="<!--{isset($result['warn_sets']) ? $result['warn_sets'][$i] : ''}-->" /> / 
+	                					<input type="text" name="warn_rep[]" class="small_item" value="<!--{isset($result['warn_rep']) ? $result['warn_rep'][$i] : ''}-->" />
+	                				</td>
+	                				<td><input type="text" name="warn_intensity[]" class="small_item" value="<!--{isset($result['warn_intensity']) ? $result['warn_intensity'][$i] : ''}-->" /></td>
+	                				<td><input type="text" name="warn_notes[]" value="<!--{isset($result['warn_notes']) ? $result['warn_notes'][$i] : ''}-->" /></td>
+	                			</tr>
+	                			<!--{/for}-->
+	                	</table>
+	                	</fieldset>
+	                	
+	                	<fieldset>
+	                	<legend>STRENGTH TRAINING 力量训练
+	                		<a class="btn btn-circle show-tooltip"><i class="icon-plus"></i></a>
+	                	</legend>
+	                	<table class="table table-bordered">
+	                			<tr>
+		                			<th>EXERCISES训练</th>
+		                			<th>SETS组/REPS次</th>
+		                			<th>WEIGHT重量/RM</th>
+		                			<th>REST TIME</th>
+		                			<th>NOTES</th>
+	                			</tr>
+	                			<!--{for $i=0;$i<$max_stre;$i++}-->
+	                			<tr class="warn">
+	                				<td><input type="text" name="stre_exercises[]" value="<!--{isset($result['stre_exercises']) ? $result['stre_exercises'][$i] : ''}-->" /></td>
+	                				<td>
+	                					<input type="text" name="stre_sets[]" class="small_item" value="<!--{isset($result['stre_sets']) ? $result['stre_sets'][$i] : ''}-->" /> / 
+	                					<input type="text" name="stre_reps[]" class="small_item" value="<!--{isset($result['stre_reps']) ? $result['stre_reps'][$i] : ''}-->" />
+	                				</td>
+	                				<td>
+	                					<input type="text" name="stre_weight[]" value="<!--{isset($result['stre_weight']) ? $result['stre_weight'][$i] : ''}-->" />
+	                				</td>
+	                				<td><input type="text" name="stre_resttime[]" class="small_item" value="<!--{isset($result['stre_resttime']) ? $result['stre_resttime'][$i] : ''}-->" /></td>
+	                				<td><input type="text" name="stre_notes[]" value="<!--{isset($result['stre_notes']) ? $result['stre_notes'][$i] : ''}-->" /></td>
+	                			</tr>
+	                			<!--{/for}-->
+	                	</table>
+	                	</fieldset>
+	                	
+	                	<fieldset>
+	                	<legend>CARDIO TRAINING	有氧训练
+	                		<a class="btn btn-circle show-tooltip"><i class="icon-plus"></i></a>
+	                	</legend>
+	                	<table class="table table-bordered">
+	                			<tr>
+		                			<th>EXERCISES</th>
+		                			<th>TIME时间/DIST距离</th>
+		                			<th>TARGET HR靶心率</th>
+		                			<th>INTENSITY*强度</th>
+		                			<th>NOTES备注</th>
+	                			</tr>
+	                			<!--{for $i=0;$i<$max_card;$i++}-->
+	                			<tr class="warn">
+	                				<td><input type="text" name="card_execises[]" value="<!--{isset($result['card_execises']) ? $result['card_execises'][$i] : ''}-->" /></td>
+	                				<td>
+	                					<input type="text" name="card_time[]" class="small_item" value="<!--{isset($result['card_time']) ? $result['card_time'][$i] : ''}-->" /> / 
+	                					<input type="text" name="card_dist[]" class="small_item" value="<!--{isset($result['card_dist']) ? $result['card_dist'][$i] : ''}-->" />
+	                				</td>
+	                				<td>
+	                					<input type="text" name="card_target[]" value="<!--{isset($result['card_target']) ? $result['card_target'][$i] : ''}-->" />
+	                				</td>
+	                				<td><input type="text" name="card_intensity[]" class="small_item" value="<!--{isset($result['card_intensity']) ? $result['card_intensity'][$i] : ''}-->" /></td>
+	                				<td><input type="text" name="card_notes[]" value="<!--{isset($result['card_notes']) ? $result['card_notes'][$i] : ''}-->" /></td>
+	                			</tr>
+	                			<!--{/for}-->
+	                	</table>
+	                	</fieldset>
+	                	
+	                	<fieldset>
+	                	<legend>COOL DOWN 冷身
+	                		<a class="btn btn-circle show-tooltip"><i class="icon-plus"></i></a>
+	                	</legend>
+	                	<table class="table table-bordered">
+	                			<tr>
+		                			<th>ACTIVITY</th>
+		                			<th>TIME 时间/DIST距离</th>
+		                			<th>SETS组/REPS次</th>
+		                			<th>INTENSITY*强度</th>
+		                			<th>NOTES备注</th>
+	                			</tr>
+	                			<!--{for $i=0;$i<$max_cool;$i++}-->
+	                			<tr class="warn">
+	                				<td><input type="text" name="cool_activity[]" value="<!--{isset($result['cool_activity']) ? $result['cool_activity'][$i] : ''}-->" /></td>
+	                				<td>
+	                					<input type="text" name="cool_time[]" class="small_item" value="<!--{isset($result['cool_time']) ? $result['cool_time'][$i] : ''}-->" /> / 
+	                					<input type="text" name="cool_dist[]" class="small_item" value="<!--{isset($result['cool_dist']) ? $result['cool_dist'][$i] : ''}-->" />
+	                				</td>
+	                				<td>
+	                					<input type="text" name="cool_sets[]" class="small_item" value="<!--{isset($result['cool_sets']) ? $result['cool_sets'][$i] : ''}-->" /> / 
+	                					<input type="text" name="cool_reps[]" class="small_item" value="<!--{isset($result['cool_reps']) ? $result['cool_reps'][$i] : ''}-->" />
+	                				</td>
+	                				<td><input type="text" name="cool_intensity[]" class="small_item" value="<!--{isset($result['cool_intensity']) ? $result['cool_intensity'][$i] : ''}-->" /></td>
+	                				<td><input type="text" name="cool_notes[]" value="<!--{isset($result['cool_notes']) ? $result['cool_notes'][$i] : ''}-->" /></td>
+	                			</tr>
+	                			<!--{/for}-->
+	                	</table>
+	                	</fieldset>
+						<div style="text-align: center;margin-top: 10px;">
+	                		<input type="submit" style="width:100px;" class="btn btn-primary" value="保存训练表">
+	                	</div>
+					</form>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->
+<script type="text/javascript">
+$('.show-tooltip').click(function(){
+	var tar = $(this).parent('legend').next('table');
+	tar.find('.warn:last').clone().appendTo(tar).find('input').val('');
+	return false;
+});
+</script>

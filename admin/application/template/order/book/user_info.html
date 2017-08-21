@@ -1,0 +1,40 @@
+<div style="width:50%;padding: 6px;text-align: center;">
+	<img src="<!--{$headimgurl}-->" style="width:100px;" />
+</div>
+<input type="hidden" name="user_id" id="user_id" value="<!--{$user_id}-->" />
+<table class="table table-bordered" style="width:50%;float:left;">
+	<tr>
+		<td>昵称：<!--{$nickname}--></td>
+		<td>电话号码：<!--{$phone}--></td>
+	</tr>
+	<tr>
+		<td>会员号：<!--{$no}--></td>
+		<td>年龄：<!--{$age}--></td>
+	</tr>
+	<tr>
+		<td colspan="2">余额：<!--{$balance}--></td>
+	</tr>
+	<tr>
+		<td colspan="2">健身次数：<!--{$fitness_time}--> 次</td>
+	</tr>
+	<tr>
+		<td colspan="2">身体素质详情：</td>
+	</tr>
+</table>
+
+<!--{if ! empty($package_info)}-->
+<table class="table table-bordered" style="width:40%;float:right">
+	<tr>
+		<th>课程</th>
+		<th>教练</th>
+		<th>套餐次数</th>
+	</tr>
+	<!--{foreach $package_info as $val}-->
+	<tr>
+		<td><!--{$val['course_name']}--></td>
+		<td><!--{$val['coach_name']}--></td>
+		<td><!--{$val['num']}--></td>
+	</tr>
+	<!--{/foreach}-->
+</table>
+<!--{/if}-->

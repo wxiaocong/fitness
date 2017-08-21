@@ -1,0 +1,97 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 会员管理</h3>
+
+                </div>
+                <div class="box-content">
+                	<form name="form" id="pform" method="post" action="<!--{base_url()}-->user/user/">
+					
+						<span>&nbsp;&nbsp;真实姓名：</span>
+				        <input type="text" name="realname" value="<!--{$realname}-->" class="form-control" style="width: 100px;">
+					
+						<span>&nbsp;&nbsp;昵称：</span>
+				        <input type="text" name="nickname" value="<!--{$nickname}-->" class="form-control" style="width: 100px;">
+				        
+				        <span>&nbsp;&nbsp;会员卡号：</span>
+				        <input type="text" name="no" value="<!--{$no}-->" class="form-control" style="width: 100px;">
+				        
+				        <span>&nbsp;&nbsp;级别：</span>
+				        <select name="grade_id" class="form-control" style="width: 100px;">
+				          	  <option></option>
+							  <!--{if !empty($grade)}-->						          
+                       		  <!--{foreach $grade as $key=>$value}-->
+                       		  <option value="<!--{$key}-->" <!--{if $key == $grade_id}-->selected<!--{/if}-->><!--{$value}--></option>
+                       		  <!--{/foreach}-->
+                       		  <!--{/if}-->	
+						</select>
+                        &nbsp;&nbsp;<input type="submit" class="btn btn-info" id="button" value="搜索">
+                    </form>
+                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                        	<th>真实姓名</th>
+                            <th>昵称</th>
+                            <th>会员卡号</th>
+                            <th>级别</th>
+                            <th>绑定教练</th>
+                            <th>是否开通</th>
+                            <th>余额</th>
+                            <th>关注时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as  $value}-->
+                        <tr>
+                        	<td><!--{$value['realname']}--></td>
+                            <td><!--{$value['nickname']}--></td>
+                            <td><!--{$value['no']}--></td>
+                            <td><!--{$grade[$value['grade_id']]}--></td>
+                            <td><!--{$value['coach_name']}--></td>
+                            <td><!--{$value['is_open']=='1'?'是':'否'}--></td>
+                            <td><!--{$value['balance']}--></td>
+                            <td><!--{$value['subscribe_time'] > 0 ? date('Y-m-d H:i:s',$value['subscribe_time']) : ''}--></td>
+                            <td>
+                            	<div class="btn-group">
+                                    <a class="btn btn-small show-tooltip" title="查看"
+                                       href="<!--{base_url()}-->user/user/detail/<!--{$value['user_id']}-->"><i
+                                            class="icon-hand-up"></i></a>
+                                    <!--{if $role_id < 3}-->        
+                                    <a class="btn btn-small show-tooltip" title="充值"
+                                       href="<!--{base_url()}-->user/user/pay/<!--{$value['user_id']}-->">充值</a>  
+                                    <!--{/if}-->   
+									<a class="btn btn-small show-tooltip" title="档案"
+                                       href="<!--{base_url()}-->user/file/detail/<!--{$value['openid']}-->">档案</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

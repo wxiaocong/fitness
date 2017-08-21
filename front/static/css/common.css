@@ -1,0 +1,113 @@
+@CHARSET "UTF-8";
+
+html {
+	font-size: 625%; /* 100÷16=625% */
+}
+
+body {
+	font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f2f2f2;
+    font-size: .24rem;
+    margin: 0 auto;
+}
+a{
+	text-decoration: none;
+}
+ul {
+	list-style: none;
+	padding: 0;
+	display: inline;
+}
+#container{
+    box-sizing: border-box;
+    height: 100%;
+    padding-bottom: 90px;
+    overflow: auto;
+}
+/* .content{
+ 	padding-bottom: 0.2rem;	
+} */
+/***tabbar****/
+.weui-tabbar {
+	margin: 0 auto;
+    /* background-image: url('../image/tabbar.png'); */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    position: fixed;
+	bottom: 0;
+    z-index: 500;
+    width: 100%;
+    background-color: #F7F7FA;
+}
+/* .weui-tabbar:before {
+	content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #C0BFC4;
+    color: #C0BFC4;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+} */
+.weui-tabbar__item {
+	display: block;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    padding-bottom: 4px;
+    font-size: 0;
+    color: #999999;
+    text-align: center;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.weui-tabbar__item.item_on{
+	background-color:#E53417;
+}
+.weui-tabbar__item.item_on div{
+	color:#fff;
+}
+.weui-tabbar__item img{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+}
+.weui-tabbar__item.weui-bar__item_on {
+    top: -15vw;
+    width: 80%;
+    margin: 0 auto;
+    height: 10vw;
+    line-height: 10vw;
+    float: left;
+    left: 10%;
+}
+.weui-tabbar__label {
+    color: #5F5F5F;
+    text-align: center;
+    font-size: 18px;
+	font-weight: bold;
+	padding: 9px 0;
+	letter-spacing: 6px;
+}
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+    color: #fff;
+}
+.weui-btn {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    font-size: 4.77vw;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    width: 100%;
+    background-color: #da3720;
+    height: 13.5vw;
+    line-height: 13.5vw;
+}

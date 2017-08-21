@@ -1,0 +1,52 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 角色权限列表</h3>
+
+                    <div class="box-tool">
+                        <a href="<!--{base_url()}-->sys/admin_role" class="btn btn-info">返回上一级</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                	<form name="addForm" id="addForm" method="post" action="<!--{base_url()}-->sys/admin_role/save_priv/<!--{isset($role_id) ? $role_id : ''}-->">
+                    <div class="clearfix"></div>
+                    <!--{if !empty($tree)}-->
+                    <!--{foreach $tree as $v}-->
+                    <div>
+	                   	<input type="checkbox" name="data[<!--{$v['menu_id']}-->][menu_id]" value="<!--{$v['menu_id']}-->" <!--{if isset($ctrl[$v['ctrl']])}-->checked="checked"<!--{/if}--> /><!--{$v['menu_name']}-->
+	                   	<table class="table">
+	                        <!--{if !empty($v['child'])}-->
+	                        <tr>
+	                        <!--{foreach $v['child'] as $val}-->
+	                           <td>
+	                           		<input type="checkbox" name="data[<!--{$val['menu_id']}-->][menu_id]" value="<!--{$val['menu_id']}-->" <!--{if isset($ctrl[$val['ctrl']])}-->checked="checked"<!--{/if}--> /><!--{$val['menu_name']}-->
+	                           </td>
+	                        <!--{/foreach}-->
+	                        </tr>
+	                        <!--{/if}-->	                        
+	                    </table>
+                    </div>
+                   	<!--{/foreach}-->
+                   	<div>
+						<input type="submit" class="btn btn-primary" id="button" value="保存"> 
+                   	</div>
+                    <!--{/if}-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

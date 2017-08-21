@@ -1,0 +1,117 @@
+<!--{include file='inc/header.html'}-->
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-comment"></i> 特色课管理</h3>
+
+                    <div class="box-tool">
+                    	<a href="<!--{base_url()}-->course/special_course" class="btn btn-info">返回上一级</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form name="addForm" id="addForm" enctype="multipart/form-data" method="post" action="<!--{base_url()}-->course/special_course/save/<!--{isset($result) ? $result['course_id'] : ''}-->">
+                        <table class="table table-advance">
+                        	<!--{if $role_id == 1}-->
+                        	<tr>
+                                <td width="100" align="right"><label></label>分店：</td>
+                                <td>
+                                    <select name="store_id" id="store_id" class="form-control">
+                                    	<option></option>
+										  <!--{if !empty($store_list)}-->						          
+			                      		  <!--{foreach $store_list as  $key=>$value}-->
+			                      		  <option value="<!--{$key}-->" <!--{if isset($result) && $result['store_id'] == $key}-->selected<!--{/if}-->><!--{$value}--></option>
+			                      		  <!--{/foreach}-->
+			                      		  <!--{/if}-->	
+									</select>
+                                </td>
+                            </tr>
+                            <!--{/if}-->
+                            <tr>
+                                <td width="100" align="right"><label></label>课程名称：</td>
+                                <td>
+                                    <input type="text" name="course_name" id="course_name" required value="<!--{isset($result) ? $result['course_name'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>课程标签：</td>
+                                <td>
+                                	<!--{if $role_id == 1}-->
+                                		<!--{foreach $tag as $val}-->
+										<label store_id = "<!--{$val['store_id']}-->" class="checkbox-inline" <!--{if ! isset($result) || $result['store_id']!=$val['store_id']}--> style="display:none;"<!--{/if}-->>
+											<input <!--{if ! isset($result) || $result['store_id']!=$val['store_id']}-->disabled="disabled"<!--{/if}--> name="tag[]" type="checkbox" <!--{if isset($result) && in_array($val['tag_id'],explode(',',$result['tag_id']))}-->checked<!--{/if}-->  value="<!--{$val['tag_id']}-->"> <!--{$val['tag_name']}-->
+										</label>										
+										<!--{/foreach}-->
+                                	<!--{else}-->
+	                                    <!--{foreach $tag as $val}-->
+										<label class="checkbox-inline">
+											<input name="tag[]" type="checkbox" <!--{if isset($result) && in_array($val['tag_id'],explode(',',$result['tag_id']))}-->checked<!--{/if}-->  value="<!--{$val['tag_id']}-->"> <!--{$val['tag_name']}-->
+										</label>
+										<!--{/foreach}-->
+									<!--{/if}-->		
+                                </td>
+                            </tr>
+                             <tr>
+                                <td  align="right"><label></label>视频：</td>
+                                <td>
+                                	<!--{if isset($result) && $result['video'] != ''}-->
+                                	<video  style="width: 100px;" src="<!--{$result['video']}-->" controls="controls"></video>
+                                	<!--{/if}-->
+                                	<input type="file" name="video" id="inputVideo">
+                                	<p class="help-block">最大2M,请处理视频文件;文件格式：mp4、ogg</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>详情图：</td>
+                                <td>
+                                	<!--{if isset($result) && $result['pic'] != ''}-->
+                                	<img style="width: 100px;" src="<!--{$result['pic']}-->" class="img-thumbnail">
+                                	<!--{/if}-->
+                                	<input type="file" name="pic" id="inputfile">
+                                	<p class="help-block">最大512KB</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>课程价格(元)：</td>
+                                <td>
+                                    <input type="text"  min="0" name="price" id="price" required value="<!--{isset($result) ? $result['price'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right"><label></label>人数上限(人)：</td>
+                                <td>
+                                    <input type="number"  min="1" name="num" id="num" required value="<!--{isset($result) ? $result['num'] : ''}-->" ></td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>课程简介：</td>
+                                <td><textarea rows="5"  style="width:80%;" name="introduce" id="introduce" ><!--{isset($result) ? $result['introduce'] : ''}--></textarea></td>
+                            </tr>
+                            <tr>
+                                <td  align="right"><label></label>注意事项：</td>
+                                <td><script id="notice" name="notice" type="text/plain"><!--{isset($result) ? $result['notice'] : ''}--></script></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                	<input type="submit" class="btn btn-primary seperate_button" id="button" value="保存">
+                                	<!--{if isset($result)}-->
+                                	<a class="btn btn-warning seperate_button" href="<!--{base_url()}-->course/special_course/status/<!--{$result['course_id']}-->/<!--{$result['disabled']}-->"><!--{if $result['disabled']=='0'}-->禁用<!--{else}-->启用<!--{/if}--></a>
+                                	<!--{/if}-->
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+
+<!--{include file='inc/footer.html'}-->

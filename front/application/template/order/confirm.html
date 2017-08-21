@@ -1,0 +1,100 @@
+<!--{include file='inc/header.html'}-->
+<form method="post" id="myform" action="<!--{base_url()}-->order/complate">
+<div class="container" id="container">
+	<!--订单开始-->
+	<div class="content">
+		<div class="weui-confirm">
+			请确认订单信息
+		</div>
+		<div class="confirm-item">
+			<div class="item-left">课程:</div>
+			<div class="item-right"><!--{$course_name}-->（<!--{$coach_name}-->）</div>
+			<input type="hidden" id="course_id" name="course_id" value="<!--{$course_id}-->" />
+			<input type="hidden" id="coach_id" name="coach_id" value="<!--{$coach_id}-->" />
+		</div>
+		<div class="confirm-item">
+			<div class="item-left">时间:</div>
+			<div class="item-right"><!--{$str_date}--> <!--{$str_time}--></div>
+			<input type="hidden" name="date_num" value="<!--{$date_num}-->" />
+			<input type="hidden" name="time_num" value="<!--{$time_num}-->" />
+		</div>
+		<div class="confirm-item">
+			<div class="item-left">地点:</div>
+			<div class="item-right" style="font-size:0.12rem;"><!--{$addr}--></div>
+		</div>
+		<div class="confirm-item">
+			<div class="item-left">人数:</div>
+			<div class="item-right people_num">
+				<!--{for $i=1;$i<=$limit_num && $i<=3;$i++}-->
+				<a href="javascript:void(0);"<!--{if $i==1}--> class="on"<!--{/if}-->><!--{$i}-->人</a>
+				<!--{/for}-->
+			</div>
+			<input type="hidden" id="people_num" name="people_num" value="1" />
+		</div>
+		<!--{if $course_type == '2'}-->
+		<!--{if ! empty($package_info)}-->
+		<div class="confirm-item">
+			<div class="item-left">剩余次数:</div>
+			<div class="item-right" style="font-size:0.12rem;"><!--{$package_info['package_num']}-->次</div>
+		</div>
+		<!--{/if}-->
+		<div class="confirm-item">
+			<div class="item-left">购买套餐:</div>
+			<div class="item-right package_num">
+				<!--{if $package_num > 0 && $package_price > 0}-->
+				<a href="javascript:void(0);" class="package" style="width:28vw;" ><!--{$package_price}-->元  / <!--{$package_num}-->次</a>
+				<!--{/if}-->
+			</div>
+			<input type="hidden" id="is_package" name="is_package" value="0" />
+		</div>
+		<!--{/if}-->
+		<div class="confirm-item count_item">
+			<div class="item-left">总价:</div>
+			<div class="item-right total_price"><!--{$price}-->元</div>
+			<input type="hidden" name="price" id="price" value="<!--{$price}-->" />
+			<input type="hidden" name="package_price" id="package_price" value="<!--{$package_price}-->" />
+		</div>
+		<div class="yh_item">
+			<div class="confirm-item">
+				<div class="item-left">Fusion VIP折后价:</div>
+				<div class="count-item-right ">尚未开通 ></div>
+			</div>
+<!-- 			<div class="confirm-item">
+				<div class="item-left">代金卷:</div>
+				<div class="count-item-right">2张可用,点击选择 ></div>
+				<input type="hidden" id="coupon_id" name="coupon_id" value="0" />
+			</div> -->
+			<div class="confirm-item item-bottom">
+				<div class="item-left">还需支付:</div>
+				<div class="count-item-right pay-money" style="font-size:4.76vw;"><!--{$price}-->元</div>
+			</div>
+		</div>
+		
+		<div class="bottom_ts">
+			温馨提示：开始时间前6小时取消预约，支持全额退款;开始时间6小时内不支持退款。
+		</div>
+	</div>
+	<!--订单结束-->
+</div>
+<div class="weui-tabbar">
+	<a href="javascript:void(0);" class="weui-btn weui-btn_primary submit_form" >提交订单</a>
+</div>
+</form>
+<div id="loadingToast" style=" display: none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-loading" style="display:inline-block;margin-top:50px;"></i>
+        </div>
+</div>
+<div class="js_dialog" id="iosDialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">支付确认</strong></div>
+        <div class="weui-dialog__bd" id="noticeCont"></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:$('#iosDialog').hide();" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a href="javascript:commit_pay();" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+        </div>
+    </div>
+</div>
+<!--{include file='inc/footer.html'}-->

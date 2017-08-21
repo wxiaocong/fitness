@@ -1,0 +1,72 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 优惠卷列表</h3>
+
+                    <div class="btn-toolbar pull-right clearfix">
+                        <div class="btn-group">
+                            <a class="btn btn-circle show-tooltip" title="增加优惠卷"
+                               href="<!--{base_url()}-->shop/coupon/detail/"><i class="icon-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-content">
+                	<form name="form" id="pform" method="post" action="<!--{base_url()}-->shop/coupon">
+	                </form> 
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                            <th>卡号</th>       
+                            <th>金额</th>
+                            <th>开始时间</th>                     
+                            <th>结束时间</th>
+                            <th>简介</th>
+                            <th>状态</th>
+                            <th style="width:100px">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as  $value}-->
+                        <tr>
+                            <td><!--{$value['no']}--></td>
+                            <td><!--{$value['money']}--></td>
+                            <td><!--{$value['start_time']}--></td>
+                            <td><!--{$value['end_time']}--></td>
+                            <td><!--{$value['profile']}--></td>
+                            <th><!--{if $value['used']=='0'}-->未使用<!--{elseif $value['used']=='1'}-->已使用<!--{else}-->已过期<!--{/if}--></th>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-small show-tooltip" title="Edit"
+                                       href="<!--{base_url()}-->shop/coupon/detail/<!--{$value['coupon_id']}-->"><i
+                                            class="icon-edit"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

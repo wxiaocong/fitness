@@ -1,0 +1,110 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" id="container">
+	<div class="order_detail">
+		<div class="top_info">
+			<div class="course-coach"><!--{$course_name}--> (<!--{$coach_name}-->)</div>
+			<div class="date-time"><!--{date('Y年m月d日',strtotime($date))}-->  <!--{$time}-->~<!--{intval($time)+1}-->:00</div>
+		
+			<div><img class="pic_persion" src="<!--{$pic_persion}-->" /></div>
+			<div class="store_name"><!--{$store_name}--></div>
+			<div class="people_num">人数：<!--{$num}-->人</div>
+			<div class="people_num"><!--{$is_confirm == '1' ? '已签到' : '未签到'}--></div>
+		</div>
+	</div>	
+	<div class="top_info">
+		<div class="n_info">
+			<!--{if $course_type=='2'}-->
+				<div class="weui-cells">
+		            <a class="weui-cell weui-cell_access" href="<!--{base_url()}-->order/train/<!--{$order_id}-->">
+		                <div class="weui-cell__bd">
+		                    <p>训练日志</p>
+		                </div>
+		                <div class="weui-cell__ft">
+		                </div>
+		            </a>
+	            </div>
+            <!--{/if}-->
+			<div>
+				<div class="info_title">地址:</div>
+				<div>
+					<!--{$addr}-->
+					<a href="<!--{$addr_link}-->">
+					<img style="float:right;width:4vw;" src="<!--{base_url()}-->static/image/location.png" />
+					</a>
+				</div>
+			</div>
+			<!--{if ! empty($content)}-->
+			<div>
+				<div class="info_title">活动方案:</div>
+				<div><!--{$content}--></div>
+			</div>
+			<!--{/if}-->
+			<div>
+				<div class="info_title">注意事项:</div>
+				<div><!--{$notice}--></div>
+			</div>
+			
+			<div style="border-bottom: 1px solid #da3720;color:#da3720;font-size: 12px;line-height: 20px;">
+				3小时内，不能取消课程；3-6小时内联系教练取消，每月可取消两次，超出扣费0.5次(私教)课程。
+			</div>
+			<!--{if $status == '1' &&  strtotime($orderTime) >  strtotime(date('Y-m-d H:i',strtotime('+3 hour')))}-->
+			<div class="weui-btn_yuyue">
+				<a href="javascript:;" class="cancel_order">取消预约</a>
+			</div>
+			<!--{/if}-->
+		</div>
+	</div>
+</div>
+<!--BEGIN dialog-->
+<div class="js_dialog" id="Dialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog weui-skin_android">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">取消预约提示</strong></div>
+        <div class="weui-dialog__bd">
+        	确定取消该订单吗?
+        </div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a href="<!--{base_url()}-->order/cancel/<!--{$order_id}-->" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+        </div>
+    </div>
+</div>
+<div id="toast" style="display: none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+        <p class="weui-toast__content"></p>
+    </div>
+</div>
+<!--END dialog-->
+<!--{include file='inc/tabbar.html'}-->
+<script type="text/javascript" src="<!--{base_url()}-->static/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$('.cancel_order').on('click', function(){
+        $('#Dialog').fadeIn(200);
+        return false;
+    });
+	$('.weui-dialog__btn').on('click',function(){
+		$('#Dialog').fadeOut(200);
+	});
+</script>
+<!--{if $firstConfirm == 1}-->
+<script type="text/javascript">
+$('#toast .weui-toast__content').html('签到成功');
+var toast = $('#toast');
+toast.fadeIn(100);
+setTimeout(function () {
+    toast.fadeOut(100);
+}, 2000);
+</script>
+<!--{else if  $firstConfirm == 2}-->
+<script type="text/javascript">
+$('#toast .weui-toast__content').html('已超时,不能签到');
+toast.fadeIn(100);
+setTimeout(function () {
+    toast.fadeOut(100);
+}, 2000);
+</script>
+<!--{/if}-->
+</body>
+</html>

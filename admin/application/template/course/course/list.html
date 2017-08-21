@@ -1,0 +1,94 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 团课课程</h3>
+                    <div class="btn-toolbar pull-right clearfix">
+                        <div class="btn-group">
+                            <a class="btn btn-circle show-tooltip" title="增加课程"
+                               href="<!--{base_url()}-->course/course/detail/"><i class="icon-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-content">
+                	<form name="form" id="pform" method="post" action="<!--{base_url()}-->course/course">
+	                </form> 
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                            <th>课程名称</th>
+                            <th>课程分类</th>
+                            <th>分配教练</th>
+                            <th>价格</th>
+                            <th>人数上限</th>
+                            <th>状态</th>
+                            <th style="width:100px">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as  $value}-->
+                        <tr>
+                            <td><!--{$value['course_name']}--></td>
+                            <td><!--{$value['tag_name']}--></td>
+                            <td><!--{$value['coach_name']}--></td>
+                            <td><!--{$value['price']}--></td>
+                            <td><!--{$value['num']}--></td>
+                            <th><!--{if $value['disabled']=='0'}-->启用<!--{else}-->禁用<!--{/if}--></th>
+                            <td>
+                                <div class="btn-group">
+                                	<a class="btn btn-small show-tooltip" title="Edit"
+                                       href="<!--{base_url()}-->course/course/detail/<!--{$value['course_id']}-->"><i
+                                            class="icon-edit"></i></a>
+                                	<a class="btn btn-small show-tooltip assign" role="<!--{$role_id}-->" data="<!--{$value['course_id']}-->" href="javascript:void(0);">分配教练</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="assign" course_id="0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">分配教练</h4>
+            </div>
+            <div class="modal-body">
+            	<!--{if !empty($coach)}-->
+            	<!--{foreach $coach as $val}-->
+            	<input type="checkbox" name="coach[]" class="coach_name" value="<!--{$val['coach_id']}-->"><!--{$val['coach_name']}-->&nbsp;&nbsp;
+            	<!--{/foreach}-->
+            	<!--{/if}-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="save_assign">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->

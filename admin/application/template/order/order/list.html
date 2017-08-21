@@ -1,0 +1,120 @@
+<!--{include file='inc/header.html'}-->
+
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-table"></i> 订单管理</h3>
+					<div class="box-tool">
+                    	<a id="download" href="javascript:;"  class="btn btn-info">导出</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                     <form name="form" id="pform" method="post" action="<!--{base_url()}-->order/order/index/">
+				         <!--{if $role_id == 1}-->
+				         <span>分店：</span>
+				          <select name="store_id" class="form-control" style="width:150px;">
+				          	  <option></option>
+							  <!--{if !empty($store)}-->						          
+                       		  <!--{foreach $store as  $key=>$value}-->
+                       		  <option value="<!--{$key}-->" <!--{if $key == $store_id}-->selected<!--{/if}-->><!--{$value}--></option>
+                       		  <!--{/foreach}-->
+                       		  <!--{/if}-->	
+						</select>
+						<!--{/if}-->
+						 <!--{if $role_id <= 2}-->
+						 <span>类型：</span>
+				         <select name="order_type" class="form-control" style="width:100px;">
+                       		  <option value="0" <!--{if $order_type != 1}-->selected<!--{/if}-->>预约订单</option>
+                       		  <option value="1" <!--{if $order_type == 1}-->selected<!--{/if}-->>充值订单</option>
+						</select>
+						<span>教练：</span>
+						<input type="text" name="coach_name" value="<!--{$coach_name}-->"  style="width:60px;" />
+						<span>姓名：</span>
+						<input type="text" name="realname" value="<!--{$realname}-->"  style="width:60px;" />
+						<!--{/if}-->
+						<span>日期：</span>
+						<input type="text" name="date"  style="width:95px;" value="<!--{$date}-->" class="Wdate search_time" onClick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />								
+						<span>开始时间：</span>
+						<input type="text" name="time"  style="width:60px;" value="<!--{$time}-->" class="Wdate search_time" onClick="WdatePicker({readOnly:true,dateFmt:'HH:00'})" />
+						<span>状态：</span>
+				          <select name="status" class="form-control" style="width:75px;">
+				          	  <option></option>
+                       		  <!--{foreach $status as  $k=>$v}-->
+                       		  <option value="<!--{$k}-->" <!--{if $cstatus != NULL && $cstatus != '' && $k == $cstatus}-->selected<!--{/if}-->><!--{$v}--></option>
+                       		  <!--{/foreach}-->
+						</select>
+                        &nbsp;&nbsp;<input type="submit" class="btn btn-info" id="button" value="搜索" >
+	                </form>                     
+                    <div class="clearfix"></div>
+                    <table class="table table-advance" id="table1">
+                        <thead>
+                        <tr>
+                            <th>客户</th>
+                            <th>姓名</th>                            
+                            <th>分店</th>
+                            <th>课程</th>
+                            <th>教练</th>
+                            <th>人数</th>
+                            <th>时间</th>
+                            <th>金额</th>
+                            <th>联系号码</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!--{if !empty($list['data'])}-->
+                        <!--{foreach $list['data'] as  $value}-->
+                        <tr>
+                            <td><!--{$value['nickname']}--></td>
+                            <td><!--{$value['realname']}--></td>
+                            <td><!--{$value['store_name']}--></td>
+                            <td><!--{$value['course_name']}--></td>
+                            <td><!--{$value['coach_name']}--></td>
+                            <td><!--{$value['num']}-->/<!--{$value['max_num']}--></td>
+                            <td><!--{$value['date']}--> <!--{$value['time']}--></td>
+                            <td><!--{$value['payment']}--></td>
+                            <td><!--{$value['tel']}--></td>
+                            <td><!--{isset($status[$value['status']])?$status[$value['status']]:'未知状态'}--></td>
+                        	<td>
+                            	<div class="btn-group">
+                                    <a class="btn btn-small show-tooltip" title="view"
+                                       href="<!--{base_url()}-->order/order/detail/<!--{$value['order_id']}-->"><i
+                                            class="icon-hand-up"></i></a>
+                                    <!--{if in_array($value['status'],array('1','6')) && $value['date'] >= date('Y-m-d') && $value['date_time'] >= $cannot_cancel_datetime}-->        
+                                   <a class="btn btn-small show-tooltip" title="refund"
+                              href="<!--{base_url()}-->order/refund/apply/<!--{$value['order_id']}-->">申请退款</a>
+                              		<!--{/if}-->
+                                </div>
+                            </td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+                    <!--{if isset($pages)}-->
+                    <div class="page"><!--{$pages}--></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+<!--{include file='inc/footer.html'}-->
+<script type="text/javascript">
+$('#download').click(function(){
+    var url = $('#host').val() + "order/order/export?" +  $('#pform').serialize();
+	window.open(url);
+});
+</script>

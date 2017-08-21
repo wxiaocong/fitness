@@ -1,0 +1,118 @@
+<!--{include file='inc/header.html'}-->
+<!-- BEGIN Content -->
+<div id="main-content">
+    <!-- BEGIN Main Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-comment"></i> 会员充值</h3>
+
+                    <div class="box-tool">
+                    	<a href="<!--{base_url()}-->user/user" class="btn btn-info">返回上一级</a>
+                    </div>
+                </div>
+                <div class="box-content">
+                	 <form name="addForm" method="post" action="<!--{base_url()}-->user/user/do_pay/<!--{$result['user_id']}-->">
+                        <table class="table table-advance">
+                            <tr>
+                                <td width="100" align="right">昵称：</td>
+                                <td><!--{isset($result) ? $result['nickname'] : ''}--></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right">头像：</td>
+                                <td>
+                                	<!--{if isset($result) && $result['headimgurl'] != ''}-->
+                                	<img style="width: 100px;" src="<!--{$result['headimgurl']}-->" class="img-circle">
+                                	<!--{/if}-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right">手机：</td>
+                                <td><!--{isset($result) ? $result['phone'] : ''}--></td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right">成交次数：</td>
+                                <td>
+                                	<input type="number" name="num_deal" id="num_deal" value="<!--{isset($result) ? $result['num_deal'] : ''}-->"  >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right">成交价格：</td>
+                                <td>
+                                	<input type="text" name="money_deal" id="money_deal" value="<!--{isset($result) ? $result['money_deal'] : ''}-->"  >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right">余额：</td>
+                                <td>
+                                	<!--{isset($result) ? $result['balance'] : ''}-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right">充值类别：</td>
+                                <td>
+                                	<select name="pay_type" id="pay_type" class="form-control">
+		                       		  <option value="1">余额</option>
+		                       		  <option value="2">套餐</option>
+									</select>
+                                </td>
+                            </tr>
+                            <!--{if isset($result) && $result['bind_coach_id']}-->
+                            <tr>
+                                <td width="100" align="right">绑定教练：</td>
+                                <td><!--{$coach_name}--></td>
+                            </tr>
+                            <tr id="tr_course" style="display:none;">
+                            	<td width="100" align="right">教练课程：</td>
+                            	<td>
+                            		 <select class="weui-select" name="course_id">
+							           	<option></option>
+							           	<!--{if ! empty($course_list)}-->
+							           	<!--{foreach $course_list as $val}-->
+							            <option value="<!--{$val['course_id']}-->"><!--{$val['course_name']}-->(<!--{$val['package_price']}-->/<!--{$val['package_num']}-->次)</option>
+							            <!--{/foreach}-->
+							            <!--{/if}-->
+							         </select>
+							         
+							         &nbsp;&nbsp;充值次数：<input type="text" name="package_num" />
+                            	</td>
+                            </tr>
+                            <!--{/if}-->
+                            <tr id="tr_money">
+                                <td width="100" align="right">充值金额：</td>
+                                <td><label for="height"></label>
+                                    <input type="number" name="money" id="money"  >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100" align="right">&nbsp;</td>
+                                <td><input type="submit" class="btn btn-primary" id="button" value="保存"></td>
+                            </tr>
+                        </table>
+                     </form>   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END Main Content -->
+
+    <!--{include file='inc/copyright.html'}-->
+
+    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
+</div>
+<!-- END Content -->
+
+<!--{include file='inc/footer.html'}-->
+<script type="text/javascript">
+$('#pay_type').change(function(){
+	if($(this).val() == '2'){
+		$('#tr_course').show();
+		$('#tr_money').hide();
+	}else{
+		$('#tr_course').hide();
+		$('#tr_money').show();		
+	}
+});
+</script>

@@ -1,0 +1,12 @@
+			<!--{if ! empty($data)}-->
+			<!--{foreach $data as $val}-->
+			<tr>
+				<td><!--{date('Y-m-d',strtotime($val['dateline']))}--></td>
+				<td><!--{isset($pay_type_cn[$val['pay_type']])?$pay_type_cn[$val['pay_type']]:'未知类型'}--></td>
+				<td><!--{$val['gain']}--></td>
+				<td><!--{$val['expense']}--></td>
+				<td><!--{$val['balance']}--></td>
+			</tr>
+            <!--{/foreach}-->
+            <!--{/if}-->
+            

@@ -1,0 +1,43 @@
+<!--{include file='inc/header.html'}-->
+<div class="container" >
+	<!--订单-->
+	<div>
+		<div class="weui-date">
+			<div class="weui-date-rq">
+				<!--{foreach $date_num as $val}-->
+				<div><!--{$val}--></div>
+				<!--{/foreach}-->
+			</div>
+			<div class="weui-date-brq">
+				<div><span date="0" class="in_date">今天</span></div>
+				<div>明天</div>
+				<!--{foreach $date_zn as $val}-->
+				<div><!--{$val}--></div>
+				<!--{/foreach}-->
+			</div>
+		</div>
+		
+		<div class="tabBox" course="<!--{$course_id}-->" coach="<!--{$coach_id}-->">
+			<!--{foreach $ltime as $k=>$v}-->
+			<div class="box-content">
+				<div  class="content-item">
+					<div class="yy_time"><!--{$v}--></div>
+					<div class="yy_cz">
+						<!--{if !empty($schedule_order) && in_array($v, $schedule_order)}-->						
+						<a href="javascript:void(0);" class="yy_false">已预约</a>
+						<!--{elseif intval($v) <= date('H')}-->
+						<a href="javascript:void(0);" class="yy_false">已结束</a>
+						<!--{elseif !empty($schedule_time) && in_array($v, $schedule_time)}-->
+						<a href="javascript:void(0);" time="<!--{$k}-->" class="yy_true">可预约</a>
+						<!--{else}-->
+						<a href="javascript:void(0);" class="yy_false">未开放</a>
+						<!--{/if}-->
+					</div>
+				</div>	
+			</div>
+			<!--{/foreach}-->
+		</div>
+	</div>
+	<!--课程结束-->
+</div>
+<!--{include file='inc/footer.html'}-->

@@ -1,0 +1,40 @@
+<!-- BEGIN Sidebar -->
+<div id="sidebar" class="nav-collapse">
+    <!-- BEGIN Navlist -->
+    <ul class="nav nav-list">
+
+        <li>
+            <a href="<!--{base_url()}-->welcome/">
+                <i class="icon-dashboard"></i>
+                <span>控制面板</span>
+            </a>
+        </li>
+		<!--{foreach $menu as $val}-->
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="<!--{empty($val['icon'])?'icon-th-list':$val['icon']}-->"></i>
+                <span><!--{$val['menu_name']}--></span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <!-- BEGIN Submenu -->
+            <ul class="submenu" <!--{if $val['model'] != substr($uri_string, 0,strpos($uri_string,'/'))}-->style="display:none;"<!--{/if}-->>
+            	<!--{if isset($val['child'])}-->
+            	<!--{foreach $val['child'] as $value}-->
+                <li><a href="<!--{base_url()}--><!--{$value['ctrl']}-->/<!--{$value['act']}-->"><!--{$value['menu_name']}--></a></li>
+                <!--{/foreach}-->
+            	<!--{/if}-->
+            </ul>
+            <!-- END Submenu -->
+        </li>
+		<!--{/foreach}-->
+
+    </ul>
+    <!-- END Navlist -->
+
+    <!-- BEGIN Sidebar Collapse Button -->
+    <div id="sidebar-collapse" class="visible-desktop">
+        <i class="icon-double-angle-left"></i>
+    </div>
+    <!-- END Sidebar Collapse Button -->
+</div>
+<!-- END Sidebar -->
