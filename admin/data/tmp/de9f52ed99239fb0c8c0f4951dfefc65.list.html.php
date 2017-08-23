@@ -1,11 +1,13 @@
-<!--{include file='inc/header.html'}-->
+<?php $this->display('inc/header.html', array (
+)); ?>
 <header class="demos-header">
 	<h1 class="demos-title">
-		<img src="<!--{base_url()}-->static/images/logo.png"> <span>系统参数列表</span> 
-		<img id="masterMenu" src="<!--{base_url()}-->static/images/menu.png">
+		<img src="<?php echo base_url() ; ?>static/images/logo.png"> <span>系统参数列表</span> 
+		<img id="masterMenu" src="<?php echo base_url() ; ?>static/images/menu.png">
 	</h1>
 </header>
-<!--{include file='inc/menu.html'}-->
+<?php $this->display('inc/menu.html', array (
+)); ?>
 <div class="weui-search-bar" id="searchBar">
   <form class="weui-search-bar__form">
     <div class="weui-search-bar__box">
@@ -19,30 +21,31 @@
     </label>
   </form>
   <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
-  &nbsp;<img src="<!--{base_url()}-->static/images/add.png" onclick="window.location.href='<!--{base_url()}-->sys/param/detail/'">
+  &nbsp;<img src="<?php echo base_url() ; ?>static/images/add.png" onclick="window.location.href='<?php echo base_url() ; ?>sys/param/detail/'">
 </div>
 <div class="weui-form-preview">
-	<!--{if !empty($list['data'])}-->
-    <!--{foreach $list['data'] as $key => $value}-->
+	<?php if(!empty($this->_vars->list['data']) ) {  ?>
+    <?php foreach($this->_vars->list['data'] as $this->_vars->key => $this->_vars->value ) {  ?>
 	<div class="weui-form-preview__bd">
 		<div class="weui-form-preview__item">
 			<label class="weui-form-preview__label">参数</label> <span
-				class="weui-form-preview__value"><!--{$value['s_key']}--></span>
+				class="weui-form-preview__value"><?php echo $this->_vars->value['s_key'] ; ?></span>
 		</div>
 		<div class="weui-form-preview__item">
 			<label class="weui-form-preview__label">值</label> <span
-				class="weui-form-preview__value"><!--{$value['s_val']}--></span>
+				class="weui-form-preview__value"><?php echo $this->_vars->value['s_val'] ; ?></span>
 		</div>
 		<div class="weui-form-preview__item">
 			<label class="weui-form-preview__label">参数含义</label> <span
-				class="weui-form-preview__value"><!--{$value['mome']}--></span>
+				class="weui-form-preview__value"><?php echo $this->_vars->value['mome'] ; ?></span>
 		</div>
 	</div>
 	<div class="weui-form-preview__ft">
 		<a class="weui-form-preview__btn weui-form-preview__btn_primary"
 			href="javascript:">操作</a>
 	</div>
-	<!--{/foreach}-->
-    <!--{/if}-->
+	<?php } ?>
+    <?php } ?>
 </div>
-<!--{include file='inc/footer.html'}-->
+<?php $this->display('inc/footer.html', array (
+)); ?>

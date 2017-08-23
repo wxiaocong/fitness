@@ -1,40 +1,32 @@
-<!-- BEGIN Sidebar -->
-<div id="sidebar" class="nav-collapse">
-    <!-- BEGIN Navlist -->
-    <ul class="nav nav-list">
-
-        <li>
-            <a href="<!--{base_url()}-->welcome/">
-                <i class="icon-dashboard"></i>
-                <span>控制面板</span>
-            </a>
-        </li>
+<div id="menu-list"  class="weui-popup__container">
+<div class="weui-popup__overlay"></div>
+	<div class="weui-cells weui-popup__modal">
+		<header class="demos-header">
+			<h1 class="demos-title">
+				<img src="<!--{base_url()}-->static/images/logo.png"> <span>后台管理系统</span> <img
+					id="closeMasterMenu" src="<!--{base_url()}-->static/images/close.png">
+			</h1>
+		</header>		
 		<!--{foreach $menu as $val}-->
-        <li>
-            <a href="#" class="dropdown-toggle">
-                <i class="<!--{empty($val['icon'])?'icon-th-list':$val['icon']}-->"></i>
-                <span><!--{$val['menu_name']}--></span>
-                <b class="arrow icon-angle-down"></b>
-            </a>
-            <!-- BEGIN Submenu -->
-            <ul class="submenu" <!--{if $val['model'] != substr($uri_string, 0,strpos($uri_string,'/'))}-->style="display:none;"<!--{/if}-->>
-            	<!--{if isset($val['child'])}-->
-            	<!--{foreach $val['child'] as $value}-->
-                <li><a href="<!--{base_url()}--><!--{$value['ctrl']}-->/<!--{$value['act']}-->"><!--{$value['menu_name']}--></a></li>
-                <!--{/foreach}-->
-            	<!--{/if}-->
-            </ul>
-            <!-- END Submenu -->
-        </li>
+		<a class="weui-cell weui-cell_access" href="javascript:;">
+			<div class="weui-cell__bd">
+				<p><!--{$val['menu_name']}--></p>
+			</div>
+			<div class="weui-cell__ft"></div>
+		</a> 
+		<div class="child-menu">
+			<!--{if isset($val['child'])}-->
+			<!--{foreach $val['child'] as $value}-->
+			<div class="weui-flex">
+		      <div class="weui-flex__item">
+		      	<div class="placeholder">
+		      		<a href="<!--{base_url()}--><!--{$value['ctrl']}-->/<!--{$value['act']}-->"><!--{$value['menu_name']}--></a>
+		      	</div>
+		      </div>
+		    </div>
+			<!--{/foreach}-->
+			<!--{/if}-->
+		</div>
 		<!--{/foreach}-->
-
-    </ul>
-    <!-- END Navlist -->
-
-    <!-- BEGIN Sidebar Collapse Button -->
-    <div id="sidebar-collapse" class="visible-desktop">
-        <i class="icon-double-angle-left"></i>
-    </div>
-    <!-- END Sidebar Collapse Button -->
+	</div>
 </div>
-<!-- END Sidebar -->
