@@ -1,0 +1,22 @@
+	<!--{if !empty($list)}-->
+    <!--{foreach $list as $key => $value}-->
+	<div class="weui-form-preview__bd">
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">参数</label> <span
+				class="weui-form-preview__value"><!--{$value['s_key']}--></span>
+		</div>
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">值</label> <span
+				class="weui-form-preview__value"><!--{$value['s_val']}--></span>
+		</div>
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">参数含义</label> <span
+				class="weui-form-preview__value"><!--{$value['mome']}--></span>
+		</div>
+	</div>
+	<div class="weui-form-preview__ft">
+		<a class="weui-form-preview__btn weui-form-preview__btn_primary"
+			href="<!--{base_url()}-->sys/param/detail/<!--{$value['id']}-->">修改</a>
+	</div>
+	<!--{/foreach}-->
+    <!--{/if}-->

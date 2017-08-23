@@ -10,39 +10,53 @@
   <form class="weui-search-bar__form">
     <div class="weui-search-bar__box">
       <i class="weui-icon-search"></i>
-      <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+      <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="参数搜索" required="">
       <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
     </div>
     <label class="weui-search-bar__label" id="searchText">
       <i class="weui-icon-search"></i>
-      <span>搜索</span>
+      <span>参数搜索</span>
     </label>
   </form>
   <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
   &nbsp;<img src="<!--{base_url()}-->static/images/add.png" onclick="window.location.href='<!--{base_url()}-->sys/param/detail/'">
 </div>
-<div class="weui-form-preview">
-	<!--{if !empty($list['data'])}-->
-    <!--{foreach $list['data'] as $key => $value}-->
-	<div class="weui-form-preview__bd">
+<div class="weui-form-preview"  >
+	<div class="weui-form-preview__bd" id="vueData"  v-for="list in lists">
 		<div class="weui-form-preview__item">
 			<label class="weui-form-preview__label">参数</label> <span
-				class="weui-form-preview__value"><!--{$value['s_key']}--></span>
+				class="weui-form-preview__value">{{ list.s_key }}</span>
 		</div>
 		<div class="weui-form-preview__item">
 			<label class="weui-form-preview__label">值</label> <span
-				class="weui-form-preview__value"><!--{$value['s_val']}--></span>
+				class="weui-form-preview__value">{{ list.s_value }}</span>
 		</div>
 		<div class="weui-form-preview__item">
 			<label class="weui-form-preview__label">参数含义</label> <span
-				class="weui-form-preview__value"><!--{$value['mome']}--></span>
+				class="weui-form-preview__value">{{ list.more }}</span>
+		</div>
+		<div class="weui-form-preview__ft">
+			<a class="weui-form-preview__btn weui-form-preview__btn_primary"
+			href="<!--{base_url()}-->sys/param/detail/{{ list.id }}">修改</a>
 		</div>
 	</div>
-	<div class="weui-form-preview__ft">
-		<a class="weui-form-preview__btn weui-form-preview__btn_primary"
-			href="javascript:">操作</a>
-	</div>
-	<!--{/foreach}-->
-    <!--{/if}-->
+	
 </div>
 <!--{include file='inc/footer.html'}-->
+<script>
+$.ajax({
+	type:"POST",
+	url:$('#host').val()+'sys/param/getData',
+	success:function(res){
+		if(res){
+			new Vue({
+			  el: '#vueData',
+			  data: {
+			    lists: res
+			  }
+			})
+		}
+	},
+	dataType:"JSON"
+});
+</script>

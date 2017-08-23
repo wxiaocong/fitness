@@ -6,9 +6,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '120.77.181.63',
 	'username' => 'root',
-	'password' => '',
+	'password' => '441549088',
 	'database' => 'fitness',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'w_',

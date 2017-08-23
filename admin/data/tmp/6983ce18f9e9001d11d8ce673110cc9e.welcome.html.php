@@ -2,8 +2,8 @@
 )); ?>
 <header class="demos-header">
 	<h1 class="demos-title">
-		<img src="./static/images/logo.png"> <span>后台管理系统</span> <img
-			id="masterMenu" src="./static/images/menu.png">
+		<img src="<?php echo base_url() ; ?>static/images/logo.png"> <span>后台管理系统</span> <img
+			id="masterMenu" src="<?php echo base_url() ; ?>static/images/menu.png">
 	</h1>
 </header>
 <?php $this->display('inc/menu.html', array (
@@ -13,7 +13,7 @@
 	<div class="weui-cells">
 		<a class="weui-cell weui-cell_access" href="javascript:;">
 			<div class="weui-cell__hd">
-				<img src="./static/images/menu/<?php echo $this->_vars->val['icon'] ; ?>.png" alt=""
+				<img src="<?php echo base_url() ; ?>static/images/menu/<?php echo $this->_vars->val['icon'] ; ?>.png" alt=""
 					style="width: 20px; margin-right: 5px; display: block">
 			</div>
 			<div class="weui-cell__bd">
@@ -32,7 +32,7 @@
 			href="<?php echo base_url() ; ?><?php echo $this->_vars->value['ctrl'] ; ?>/<?php echo $this->_vars->value['act'] ; ?>"
 			class="weui-grid js_grid">
 			<div class="weui-grid__icon">
-				<img src="./static/images/menu/<?php echo $this->_vars->value['icon'] ; ?>.png" alt="">
+				<img src="<?php echo base_url() ; ?>static/images/menu/<?php echo $this->_vars->value['icon'] ; ?>.png" alt="">
 			</div>
 			<p class="weui-grid__label">
 				<?php echo $this->_vars->value['menu_name'] ; ?>

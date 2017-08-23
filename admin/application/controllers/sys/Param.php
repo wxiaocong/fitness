@@ -12,20 +12,24 @@ class Param extends My_Controller
 		$this->load->model ( 'param_model' );
 	}
 	
-	public function index($page = 1)
+	public function index()
 	{
+		$data = array();
+		$this->template->display ( 'sys/param/list.html', $data );
+	}
+	
+	public function getData($page = 1){
 		
 		$page < 1 && $page = 1;
 		$page = pageSize * ($page - 1);
-		 
-		$data ['list'] = $this->param_model->get(NULL,pageSize,$page);
-		// 分页
-		$config ['base_url'] = site_url ( 'sys/param/index' );
-		$config ['total_rows'] = $data ['list'] ['totalNum'];
-		$this->pagination->initialize ( $config );
-		$data ['pages'] = $this->pagination->create_links ();
+			
+// 		$data ['list'] = $this->param_model->get(NULL,pageSize,$page);
 		
-		$this->template->display ( 'sys/param/list.html', $data );
+		$sql = "SELECT * FROM w_setting LIMIT $page,".pageSize;
+		$data = $this->param_model->get_all($sql);
+		echo json_encode($data);
+// 		$this->template->display ( 'sys/param/list.html', $data );
+		
 	}
 	
 	public function detail($id = '')
