@@ -21,42 +21,31 @@
   <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
   &nbsp;<img src="<!--{base_url()}-->static/images/add.png" onclick="window.location.href='<!--{base_url()}-->sys/param/detail/'">
 </div>
-<div class="weui-form-preview"  >
-	<div class="weui-form-preview__bd" id="vueData"  v-for="list in lists">
-		<div class="weui-form-preview__item">
-			<label class="weui-form-preview__label">参数</label> <span
-				class="weui-form-preview__value">{{ list.s_key }}</span>
-		</div>
-		<div class="weui-form-preview__item">
-			<label class="weui-form-preview__label">值</label> <span
-				class="weui-form-preview__value">{{ list.s_value }}</span>
-		</div>
-		<div class="weui-form-preview__item">
-			<label class="weui-form-preview__label">参数含义</label> <span
-				class="weui-form-preview__value">{{ list.more }}</span>
-		</div>
-		<div class="weui-form-preview__ft">
-			<a class="weui-form-preview__btn weui-form-preview__btn_primary"
-			href="<!--{base_url()}-->sys/param/detail/{{ list.id }}">修改</a>
-		</div>
-	</div>
-	
+<div class="weui-form-preview"></div>
+<div class="weui-loadmore">
+  <i class="weui-loading"></i>
+  <span class="weui-loadmore__tips">正在加载</span>
 </div>
 <!--{include file='inc/footer.html'}-->
 <script>
-$.ajax({
-	type:"POST",
-	url:$('#host').val()+'sys/param/getData',
-	success:function(res){
-		if(res){
-			new Vue({
-			  el: '#vueData',
-			  data: {
-			    lists: res
-			  }
-			})
+var page = 1;
+var loading = false;  //状态标记
+getData(page);
+function getData(page){
+	$.ajax({
+		type:"POST",
+		data:{search:$('#searchInput').val()}
+		url:$('#host').val()+'sys/param/getData/'+page,
+		success:function(res){
+			$('.weui-form-preview').append(res);
+			loading = false;
 		}
-	},
-	dataType:"JSON"
+	});
+}
+
+$(document.body).infinite().on("infinite", function() {
+  if(loading) return;
+  loading = true;
+  getData(++page);
 });
 </script>

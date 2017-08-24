@@ -87,5 +87,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('TEMPLATE', APPPATH.'template/');
 
-define('pageSize', 10);
+define('pageSize', 6);
 define('file_cache_time', 60);

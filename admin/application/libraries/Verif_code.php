@@ -41,7 +41,6 @@ class Verif_code
 		$captcha_text_color = $captcha_text_color_arr[$color_idx];
 		$captcha_noice_color = $captcha_noice_color_arr[$color_idx];
 		$background_color_tmp = $background_color_arr[$color_idx];
-
 		
 		header ( 'Content-Type: image/jpeg' ); // defining the image type to be shown in browser widow
 		$font_size = $image_height * 0.75;

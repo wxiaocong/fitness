@@ -42,6 +42,9 @@
 <div class="weui-btn-area">
     <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
 </div>
+<div class="weui-footer weui-footer_fixed-bottom">
+  <p class="weui-footer__text">Copyright © 2017 小葱</p>
+</div>
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ; ?>static/js/md5.js"></script>
@@ -82,9 +85,8 @@
 		});
 		return false;
 	});
-	
 	$('.weui-vcode-img').click(function(){
-		$(this).prop('src',"<?php echo base_url() ; ?>login/refresh_code?rand=" + Math.random());
+		$(this).attr('src',"<?php echo base_url() ; ?>login/refresh_code?rand=" + Math.random());
 	});
 </script>
 </body>

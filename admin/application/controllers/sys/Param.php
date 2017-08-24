@@ -23,12 +23,12 @@ class Param extends My_Controller
 		$page < 1 && $page = 1;
 		$page = pageSize * ($page - 1);
 			
-// 		$data ['list'] = $this->param_model->get(NULL,pageSize,$page);
-		
-		$sql = "SELECT * FROM w_setting LIMIT $page,".pageSize;
-		$data = $this->param_model->get_all($sql);
-		echo json_encode($data);
-// 		$this->template->display ( 'sys/param/list.html', $data );
+		$search = $this->input->post('search');
+		$where = "WHERE 1";
+		$search && $where .= "s_key LIKE '%{$search}%'";
+		$sql = "SELECT * FROM w_setting $where LIMIT $page,".pageSize;
+		$data['list'] = $this->param_model->get_all($sql);
+		$this->template->display ( 'sys/param/data.html', $data );
 		
 	}
 	

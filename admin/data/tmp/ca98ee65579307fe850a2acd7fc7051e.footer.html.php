@@ -1,6 +1,3 @@
-<div class="weui-footer weui-footer_fixed-bottom">
-  <p class="weui-footer__text">Copyright © 2017 小葱</p>
-</div>
 <input type="hidden" id="host" value="<?php echo base_url() ; ?>">
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
