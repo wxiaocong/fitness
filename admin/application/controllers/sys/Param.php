@@ -25,8 +25,8 @@ class Param extends My_Controller
 			
 		$search = $this->input->post('search');
 		$where = "WHERE 1";
-		$search && $where .= "s_key LIKE '%{$search}%'";
-		$sql = "SELECT * FROM w_setting $where LIMIT $page,".pageSize;
+		$search && $where .= " AND s_key LIKE '%{$search}%'";
+		$sql = "SELECT * FROM w_setting $where ORDER BY id DESC LIMIT $page,".pageSize;
 		$data['list'] = $this->param_model->get_all($sql);
 		$this->template->display ( 'sys/param/data.html', $data );
 		
@@ -51,10 +51,8 @@ class Param extends My_Controller
 	
 	public function save($id = '')
 	{
-		$data = $this->input->post ();
-		
-		$this->param_model->save ( $data, $id );
-		redirect ( base_url () . 'sys/param' );
+		$data = $this->input->get_post (NULL, TRUE);
+		echo $this->param_model->save ( $data, $id );
 	}
 	
 	public function del($id)
@@ -63,7 +61,6 @@ class Param extends My_Controller
 		$id && $this->param_model->del ( array (
 				'id' => $id 
 		) );
-		redirect ( base_url () . 'sys/param' );
 	}
 
 }

@@ -19,9 +19,9 @@ class Param_model extends My_Model {
         $insertArr['mome'] = $data['meaning'];
 
         if ($id) {
-            $this->update($insertArr, array('id' => $id));
+           return $this->update($insertArr, array('id' => $id));
         }else{
-            $this->add($insertArr);
+           return $this->add($insertArr);
         }
     }
     

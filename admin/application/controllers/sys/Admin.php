@@ -16,6 +16,16 @@ class Admin extends My_Controller
 	
 	public function index($page = 1)
 	{
+		//角色列表
+		$data['admin_role'] = $this->admin_role_model->get_role();
+		//分店列表
+		$data['store_list'] = $this->store_model->get_store_list();
+		
+		$this->template->display ( 'sys/admin/list.html', $data );
+	}
+	
+	public function getData($page = 1){
+	
 		$data['role_id'] = $role_id = intval($this->input->post('role_id'));
 		$data['store_id'] = $store_id = intval($this->input->post('store_id'));
 		$data['uname'] = $uname = $this->input->post('uname');
@@ -23,29 +33,21 @@ class Admin extends My_Controller
 		$page < 1 && $page = 1;
 		$page = pageSize * ($page - 1);
 		
-		$where = "WHERE a.role_id != '4'"; //教练在coach表
+		$where = "WHERE 1";
 		$role_id && $where .= " AND a.role_id = {$role_id}";
 		$store_id && $where .= " AND b.store_id = {$store_id}";
 		$uname && $where .= " AND a.uname LIKE '%$uname%'";
 		
-		$sql_arr ['data_sql'] = "SELECT
-			  a.admin_id,a.role_id,a.store_id,a.uname,a.name,a.disabled,b.name AS store_name
-			FROM w_admin a LEFT JOIN w_store b ON a.store_id = b.store_id $where limit $page," . pageSize;
-		$sql_arr ['count_sql'] = "SELECT count(1) AS cnt FROM w_admin a LEFT JOIN w_store b ON a.store_id = b.store_id $where";
-		$data ['list'] = $this->admin_model->get_page_list_by_sql ( $sql_arr );
-		// 分页
-		$config ['base_url'] = site_url ( 'sys/admin/index' );
-		$config ['total_rows'] = $data ['list'] ['totalNum'];
-		$this->pagination->initialize ( $config );
-		$data ['pages'] = $this->pagination->create_links ();
 		
-		//角色列表
-		$data['admin_role'] = $this->admin_role_model->get_role();
-		//分店列表
-		$data['store_list'] = $this->store_model->get_store_list();
+		$sql = "SELECT
+		a.admin_id,a.role_id,a.store_id,a.uname,a.name,a.disabled,b.name AS store_name,c.role_name
+		FROM w_admin a LEFT JOIN w_store b ON a.store_id = b.store_id 
+		LEFT JOIN w_admin_role c ON a.role_id = c.role_id $where limit $page," . pageSize;
 		
-		$data['footerJs'] = array('DatePicker/WdatePicker.js');
-		$this->template->display ( 'sys/admin/list.html', $data );
+		$data['list'] = $this->admin_model->get_all($sql);
+		
+		$this->template->display ( 'sys/admin/data.html', $data );
+	
 	}
 	
 	public function detail($id = '')

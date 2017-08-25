@@ -1,0 +1,28 @@
+	<!--{if !empty($list)}-->
+    <!--{foreach $list as $key => $value}-->
+	<div class="weui-form-preview__bd" onClick="javascript:window.location.href='<!--{base_url()}-->sys/admin/detail/<!--{$value['admin_id']}-->'">
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">角色</label> <span
+				class="weui-form-preview__value"><!--{$value['role_name']}--></span>
+		</div>
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">用户名</label> <span
+				class="weui-form-preview__value"><!--{$value['uname']}--></span>
+		</div>
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">真实姓名</label> <span
+				class="weui-form-preview__value"><!--{$value['name']}--></span>
+		</div>
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">分店</label> <span
+				class="weui-form-preview__value"><!--{$value['store_name']}--></span>
+		</div>
+		<div class="weui-form-preview__item">
+			<label class="weui-form-preview__label">状态</label> <span
+				class="weui-form-preview__value"><!--{if $value['disabled']=='0'}-->启用<!--{else}-->禁用<!--{/if}--></span>
+		</div>
+	</div>
+	<div class="weui-form-preview__ft">
+	</div>
+	<!--{/foreach}-->
+    <!--{/if}-->

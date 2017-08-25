@@ -5,14 +5,30 @@ body, html {
 .demos-title {
     text-align: left;
     font-size: 16px;
-    color: #3cc51f;
+    color: #333;
     font-weight: 400;
     margin: 0 2%;
+  	line-height: 32px;
+}
+.demos-title a{
+	float: left; 
+	color: #333;
+}
+.demos-title a img{
+	padding-bottom: 4px;
 }
 .demos-title img{
   vertical-align: middle;	
 }
-#masterMenu,#closeMasterMenu{
+.demos-title p{
+	text-align: center;
+}
+#masterMenu{
+	float:right;
+    height: 32px;
+    margin-top: -2px;	
+}
+#closeMasterMenu{
 	float:right;
     height: 32px;
     margin-top: 8px;
@@ -43,6 +59,7 @@ body, html {
 
 .demos-header {
   padding: 15px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .demos-content-padded {
@@ -61,6 +78,15 @@ body, html {
 }
 .weui-grids{
 	display:none;
+}
+#searchBar{
+    position: relative;
+    padding: 8px 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    box-sizing: border-box;
+    background-color: #efeff4;	
 }
 footer {
   text-align: center;

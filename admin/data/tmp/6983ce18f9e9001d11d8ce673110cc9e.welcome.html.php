@@ -2,7 +2,7 @@
 )); ?>
 <header class="demos-header">
 	<h1 class="demos-title">
-		<img src="<?php echo base_url() ; ?>static/images/logo.png"> <span>后台管理系统</span> <img
+		<a href="<?php echo base_url() ; ?>"><img src="<?php echo base_url() ; ?>static/images/logo.png"></a> <span>后台管理系统</span> <img
 			id="masterMenu" src="<?php echo base_url() ; ?>static/images/menu.png">
 	</h1>
 </header>

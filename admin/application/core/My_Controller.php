@@ -53,7 +53,7 @@ class My_Controller extends CI_Controller
 		$this->template->assign ( 'role_id', $role_id );		
 		$this->template->assign ( 'username', $user ['username'] );		
 		$this->template->assign ( 'user_data', $user );		
-		$this->template->assign ( 'login_dateline', $user ['login_dateline'] );
+		$this->template->assign ( 'pageSize', pageSize );
 		$this->template->assign ( 'pic_persion', $user ['pic_persion'] );
 		$this->template->assign ( 'store_id', $user ['store_id'] );
 				
