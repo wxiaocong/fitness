@@ -13,18 +13,19 @@ class Admin_model extends My_Model {
     
     public function save($data,$id = '')
     {
+    	
         if ($id) {
         	if( ! $data['passwd'])
         		unset($data['passwd']);
         	else
         		$data['passwd'] = get_check_pwd(md5($data['passwd']));
-        	$this->update($data, array('admin_id' => $id));
+        	return $this->update($data, array('admin_id' => $id));
         }else{
         	if($this->check_uname_repeat($data['uname'])){
         		show_error('用户已存在.');
         	}
         	$data['passwd'] = get_check_pwd(md5($data['passwd']));
-            $this->add($data);
+            return $this->add($data);
         }
     }
     

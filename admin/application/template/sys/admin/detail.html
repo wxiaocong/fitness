@@ -11,52 +11,101 @@
 <!--{include file='inc/menu.html'}-->
 <form id="dform">
 <div class="weui-cells weui-cells_form">
+	<div class="weui-cell weui-cell_select weui-cell_select-after">
+        <div class="weui-cell__hd">
+          <label for="" class="weui-label">角色</label>
+        </div>
+        <div class="weui-cell__bd">
+          <select class="weui-select" id="role_id">
+          	<option value="0"></option>
+       		 <!--{if !empty($admin_role)}-->						          
+             <!--{foreach $admin_role as $key => $value}-->
+             <option value="<!--{$key}-->" <!--{if isset($result) && $key == $result['role_id']}-->selected<!--{/if}-->><!--{$value['role_name']}--></option>
+             <!--{/foreach}-->
+             <!--{/if}-->	
+          </select>
+        </div>
+     </div>
+     
+     <!--{if ! isset($result) || $result['role_id'] > 1}-->
+     <div class="weui-cell weui-cell_select weui-cell_select-after" id="storeItem">
+        <div class="weui-cell__hd">
+          <label for="" class="weui-label">分店</label>
+        </div>
+        <div class="weui-cell__bd">
+          <select class="weui-select" id="store_id">
+          <option value="0"></option>
+          <!--{if !empty($store_list)}-->						          
+  		  <!--{foreach $store_list as $k => $val}-->
+  		  <option value="<!--{$k}-->" <!--{if isset($result) && $k == $result['store_id']}-->selected<!--{/if}-->><!--{$val}--></option>
+  		  <!--{/foreach}-->
+  		  <!--{/if}-->	
+          </select>
+        </div>
+     </div>
+	 <!--{/if}-->
+
 	<div class="weui-cell">
 		<div class="weui-cell__hd">
-			<label class="weui-label">参数</label>
+			<label class="weui-label">用户名</label>
 		</div>
 		<div class="weui-cell__bd">
-			<input class="weui-input" name="name" type="text" required
-				value="<!--{isset($result) ? $result['s_key'] : ''}-->"
-				placeholder="参数名">
+			<input class="weui-input" id="uname" type="text" 
+				value="<!--{isset($result) ? $result['uname'] : ''}-->">
 		</div>
 	</div>
-
-	<div class="weui-cells__title">参数值</div>
-	<div class="weui-cells">
-		<div class="weui-cell">
-			<div class="weui-cell__bd">
-				<input class="weui-input" name="value" type="text" value="<!--{isset($result) ? $result['s_val'] : ''}-->" >
-			</div>
+	
+	<div class="weui-cell">
+		<div class="weui-cell__hd">
+			<label class="weui-label">真实姓名</label>
+		</div>
+		<div class="weui-cell__bd">
+			<input class="weui-input" id="name" type="text" 
+				value="<!--{isset($result) ? $result['name'] : ''}-->">
 		</div>
 	</div>
-
-	<div class="weui-cells__title">含义</div>
-	<div class="weui-cells weui-cells_form">
-		<div class="weui-cell">
-			<div class="weui-cell__bd">
-				<textarea class="weui-textarea" name="meaning" placeholder="含义"
-					rows="3">
-					<!--{isset($result) ? $result['mome'] : ''}-->
-				</textarea>
-			</div>
+	
+	<div class="weui-cell">
+		<div class="weui-cell__hd">
+			<label class="weui-label">密码</label>
+		</div>
+		<div class="weui-cell__bd">
+			<input class="weui-input" id="passwd" type="password" >
 		</div>
 	</div>
 	
 	<div class="button_sp_area">
 		<a href="javascript:;" class="weui-btn weui-btn_primary">保存</a>
         <!--{if isset($result)}--> 
-        <a href="javascript:;" url="<!--{base_url()}-->sys/param/del/<!--{$result['id']}-->"  onclick="return confirm('确认删除？');"
-        class="weui-btn weui-btn_warn">删除</a>
+        <a href="javascript:;" url="<!--{base_url()}-->sys/admin/status/<!--{$result['admin_id']}-->/<!--{$result['disabled']}-->" 
+        class="weui-btn weui-btn_warn"><!--{if $result['disabled']=='0'}-->禁用<!--{else}-->启用<!--{/if}--></a>
         <!--{/if}-->
     </div>
 </div>
 </form>
 <!--{include file='inc/footer.html'}-->
 <script>
-
+$('#role_id').change(function(){
+	if($(this).val() == 1){
+		$('#storeItem').hide();
+	}else{
+		$('#storeItem').show();
+	}
+});
 $('.weui-btn_primary').click(function(){
-	var url = "<!--{base_url()}-->sys/param/save/<!--{isset($result) ? $result['id'] : ''}-->";
+	if($('#role_id').val() < 1){
+		$.toptip('角色必填', 'error');
+		return false;
+	}
+	if($('#role_id').val() == 1 && ($('#store_id').val() < 1){
+		$.toptip('分店必填', 'error');
+		return false;
+	}
+	if($('#uname').val().length < 2){
+		$.toptip('用户名必填', 'error');
+		return false;
+	}
+	var url = "<!--{base_url()}-->sys/admin/save/<!--{isset($result) ? $result['admin_id'] : ''}-->";
 	$.ajax({
 		type:"POST",
 		data:$('#dform').serialize(),
@@ -64,7 +113,7 @@ $('.weui-btn_primary').click(function(){
 		success:function(res){
 			if(res > 0){
 				$.toast("保存成功", function() {
-					window.location.href="<!--{base_url()}-->sys/param";
+					window.location.href="<!--{base_url()}-->sys/admin";
 				});
 			}else{
 				$.toptip('保存失败', 'error');
@@ -88,88 +137,3 @@ $('.weui-btn_warn').click(function(){
 	return false;
 });
 </script>
-
-
-
-
-
-<!--{include file='inc/header.html'}-->
-<!-- BEGIN Content -->
-<div id="main-content">
-    <!-- BEGIN Main Content -->
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="box">
-                <div class="box-title">
-                    <h3><i class="icon-comment"></i> 用户编辑</h3>
-
-                    <div class="box-tool">
-                    	<a href="<!--{base_url()}-->sys/admin" class="btn btn-info">返回上一级</a>
-                    </div>
-                </div>
-                <div class="box-content">
-                    <form name="addForm" id="addForm" method="post" action="<!--{base_url()}-->sys/admin/save/<!--{isset($result) ? $result['admin_id'] : ''}-->">
-                        <table class="table table-advance">
-                            <tr>
-                                <td width="100" align="right">角色：</td>
-                                <td>
-                               	  <select name="role_id"  id="role_id">
-						          <option value="0"></option>
-						          <!--{if !empty($admin_role)}-->						          
-                        		  <!--{foreach $admin_role as $key => $value}-->
-                        		  <option value="<!--{$key}-->" <!--{if isset($result) && $key == $result['role_id']}-->selected<!--{/if}-->><!--{$value['role_name']}--></option>
-                        		  <!--{/foreach}-->
-                        		  <!--{/if}-->	
-						          </select>
-                            </tr>
-                             <tr id="store_id" <!--{if  isset($result) && $result['role_id'] == 1}-->style="display:none;"<!--{/if}-->>
-                                <td width="100" align="right"><label></label>分店：</td>
-                                <td>
-                               	  <select name="store_id">
-						          <option value="0"></option>
-						          <!--{if !empty($store_list)}-->						          
-                        		  <!--{foreach $store_list as $k => $val}-->
-                        		  <option value="<!--{$k}-->" <!--{if isset($result) && $k == $result['store_id']}-->selected<!--{/if}-->><!--{$val}--></option>
-                        		  <!--{/foreach}-->
-                        		  <!--{/if}-->	
-						          </select>
-                            </tr>
-                            <tr>
-                                <td width="100" align="right"><label></label>用户名：</td>
-                                <td>
-                                    <input type="text" name="uname" id="uname" required value="<!--{isset($result) ? $result['uname'] : ''}-->" ></td>
-                            </tr>
-                            <tr>
-                                <td width="100" align="right"><label></label>真实姓名：</td>
-                                <td>
-                                    <input type="text" name="name" id="name" value="<!--{isset($result) ? $result['name'] : ''}-->" ></td>
-                            </tr>
-                            <tr>
-                                <td width="100" align="right"><label></label>密码：</td>
-                                <td>
-                                    <input type="password" name="passwd" id="passwd" <!--{if ! isset($result)}-->required<!--{/if}--> ></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                	<input type="submit" class="btn btn-primary seperate_button" id="button" value="保存">
-                                	<!--{if isset($result)}-->
-                                	<a class="btn btn-warning seperate_button" href="<!--{base_url()}-->sys/admin/status/<!--{$result['admin_id']}-->/<!--{$result['disabled']}-->"><!--{if $result['disabled']=='0'}-->禁用<!--{else}-->启用<!--{/if}--></a>
-                                	<!--{/if}-->
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- END Main Content -->
-
-    <!--{include file='inc/copyright.html'}-->
-
-    <a id="btn-scrollup" class="btn btn-circle btn-large" href="#"><i class="icon-chevron-up"></i></a>
-</div>
-<!-- END Content -->
-
-<!--{include file='inc/footer.html'}-->

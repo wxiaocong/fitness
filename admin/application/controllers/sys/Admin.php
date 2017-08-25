@@ -65,22 +65,16 @@ class Admin extends My_Controller
 		}
 		//角色列表
 		$data['admin_role'] = $this->admin_role_model->get_role();
-		//去掉教练角色
-		unset($data['admin_role'][4]);
 		//分店列表
 		$data['store_list'] = $this->store_model->get_store_list();
 		
-		$data['footerJs'] = array('admin.js');
 		$this->template->display ( 'sys/admin/detail.html', $data );
 	}
 	
 	public function save($id = '')
 	{
 		$data = $this->input->post ();
-
 		$this->admin_model->save ( $data, $id );
-
-		redirect ( base_url () . 'sys/admin' );
 	}
 	
 	public function status($id, $status)
